@@ -6,7 +6,7 @@ const CustomTextInput = ({classes = '', width = 'w-full', customIcon = null, pla
   const InputIcon = useMemo(() => customIcon || MagnifyingGlassIcon, [customIcon])
   return (
     <View
-      className={`flex-row item items-stretch justify-between gap-x-2 rounded-lg p-3 bg-gray-200 ${classes} ${width}`}
+      className={`flex-row item items-center justify-between gap-x-2 rounded-lg p-2 bg-gray-200 ${classes} ${width}`}
     >
       <TextInput
         placeholder={placeholder}
