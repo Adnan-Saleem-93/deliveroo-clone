@@ -8,7 +8,7 @@ import CurrentLocation from '../molecules/CurrentLocation'
 
 const HomeScreenHeader = () => {
   return (
-    <View className="flex-col gap-y-4">
+    <View className="flex-col gap-y-4 p-4 bg-white">
       <View className="flex-row items-center justify-between w-full gap-x-2">
         {/* Logo */}
         <DeliverooLogo />
@@ -22,7 +22,7 @@ const HomeScreenHeader = () => {
 
       {/* Search Box */}
       <View className="flex-row items-center justify-between w-full gap-x-2">
-        <CustomTextInput classes="w-[90%]" placeholder="Search Items" />
+        <CustomTextInput width="w-[90%]" placeholder="Search Restaurants or Cuisines" />
         <AdjustmentsHorizontalIcon color="#707070" strokeWidth={3} />
       </View>
     </View>

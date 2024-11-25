@@ -4,8 +4,8 @@ import HomeScreenHeader from '../organisms/HomeScreenHeader'
 
 const HomeTemplate = ({children}) => {
   return (
-    <SafeAreaView>
-      <View className="px-4">
+    <SafeAreaView className="bg-white">
+      <View className="bg-slate-100 w-screen h-screen">
         {/* HEADER */}
         <HomeScreenHeader />
 
