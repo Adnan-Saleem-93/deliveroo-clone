@@ -19,12 +19,12 @@ const FoodItemCard = ({id, text, rating, category, location, img}) => {
           </View>
 
           {/* Category */}
-          <Text className="line-clamp-1 text-gray-500 lighthouse italic text-sm">- {category}</Text>
+          <Text className="line-clamp-1 text-gray-500 italic text-sm">- {category}</Text>
         </View>
 
         {/* Location */}
         <View className="flex-row gap-x-2">
-          <Text className="line-clamp-1 text-gray-500 lighthouse text-sm">Nearby - {location}</Text>
+          <Text className="line-clamp-1 text-gray-500 text-sm">Nearby - {location}</Text>
         </View>
       </View>
     </TouchableOpacity>
