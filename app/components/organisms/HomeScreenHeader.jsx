@@ -8,7 +8,7 @@ import CurrentLocation from '../molecules/CurrentLocation'
 
 const HomeScreenHeader = () => {
   return (
-    <View className="flex-col gap-y-4 p-4 bg-white">
+    <View className="flex-col gap-y-4 px-4 pb-4 bg-white">
       <View className="flex-row items-center justify-between w-full gap-x-2">
         {/* Logo */}
         <DeliverooLogo />

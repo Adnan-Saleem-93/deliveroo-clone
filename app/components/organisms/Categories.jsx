@@ -1,7 +1,7 @@
 import {ScrollView, View} from 'react-native'
 import React from 'react'
 import {CategoriesList} from '../../data/categories'
-import CategoryCard from '../molecules/CategoryCard'
+import CategoryCard from '../molecules/Cards/CategoryCard'
 
 const Categories = () => {
   return (
