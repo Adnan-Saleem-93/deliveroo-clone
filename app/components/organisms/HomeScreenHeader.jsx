@@ -1,4 +1,4 @@
-import {View} from 'react-native'
+import {TouchableOpacity, View} from 'react-native'
 import React from 'react'
 import {AdjustmentsHorizontalIcon} from 'react-native-heroicons/outline'
 import Avatar from '../atoms/Avatar'
@@ -11,19 +11,26 @@ const HomeScreenHeader = () => {
     <View className="flex-col gap-y-4 px-4 pb-4 bg-white">
       <View className="flex-row items-center justify-between w-full gap-x-2">
         {/* Logo */}
-        <DeliverooLogo />
+        <TouchableOpacity>
+          <DeliverooLogo />
+        </TouchableOpacity>
 
         {/* Location */}
         <CurrentLocation />
 
         {/* Avatar Image */}
-        <Avatar />
+        <TouchableOpacity>
+          <Avatar />
+        </TouchableOpacity>
       </View>
 
       {/* Search Box */}
       <View className="flex-row items-center justify-between w-full gap-x-2">
         <CustomTextInput width="w-[90%]" placeholder="Search Restaurants or Cuisines" />
-        <AdjustmentsHorizontalIcon color="#707070" strokeWidth={3} />
+
+        <TouchableOpacity>
+          <AdjustmentsHorizontalIcon color="#707070" strokeWidth={3} />
+        </TouchableOpacity>
       </View>
     </View>
   )
