@@ -1,9 +1,11 @@
-import {View, Text, SafeAreaView, ScrollView} from 'react-native'
+import {View, ScrollView, Platform} from 'react-native'
 import React, {useLayoutEffect} from 'react'
 import {useNavigation} from '@react-navigation/native'
 import HomeTemplate from '../components/templates/HomeTemplate'
 import Categories from '../components/organisms/Categories'
 import OffersNearYou from '../components/organisms/OffersNearYou'
+import Featured from '../components/organisms/Featured'
+import TastyDiscounts from '../components/organisms/TastyDiscounts'
 
 const HomeScreen = () => {
   const navigation = useNavigation()
@@ -15,11 +17,18 @@ const HomeScreen = () => {
   }, [])
   return (
     <HomeTemplate>
-      <ScrollView className="p-4">
+      <ScrollView
+        contentContainerStyle={{paddingBottom: Platform.OS === 'android' ? 50 : 100}}
+        className="p-4"
+      >
         <View className="flex-col gap-y-8">
           <Categories />
 
           <OffersNearYou />
+
+          <Featured />
+
+          <TastyDiscounts />
         </View>
       </ScrollView>
     </HomeTemplate>

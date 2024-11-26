@@ -2,7 +2,7 @@ import {View, Text, Image, TouchableOpacity} from 'react-native'
 import React from 'react'
 import {StarIcon as StarIconSolid} from 'react-native-heroicons/solid'
 
-const OfferNearYouCard = ({id, text, rating, category, location, img}) => {
+const FoodItemCard = ({id, text, rating, category, location, img}) => {
   return (
     <TouchableOpacity className="bg-white rounded-lg w-56">
       <Image source={img} className="w-full h-36 rounded-lg" />
@@ -32,4 +32,4 @@ const OfferNearYouCard = ({id, text, rating, category, location, img}) => {
   )
 }
 
-export default OfferNearYouCard
+export default FoodItemCard
