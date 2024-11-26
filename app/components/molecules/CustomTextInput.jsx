@@ -1,4 +1,4 @@
-import {TextInput, View} from 'react-native'
+import {TextInput, TouchableOpacity, View} from 'react-native'
 import React, {useMemo} from 'react'
 import {MagnifyingGlassIcon} from 'react-native-heroicons/outline'
 
@@ -14,7 +14,9 @@ const CustomTextInput = ({classes = '', width = 'w-full', customIcon = null, pla
         textAlignVertical="center"
         keyboardType="default"
       />
-      <InputIcon color="#707070" strokeWidth={2} />
+      <TouchableOpacity>
+        <InputIcon color="#707070" strokeWidth={2} />
+      </TouchableOpacity>
     </View>
   )
 }

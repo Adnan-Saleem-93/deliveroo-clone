@@ -17,10 +17,9 @@ const FoodItemCard = ({id, text, rating, category, location, img}) => {
             <StarIconSolid size={14} color="#71a02b" />
             <Text className="text-gray-500 text-sm">{rating}</Text>
           </View>
-          {/* Divider */}
-          <Text className="text-gray-500 lighthouse">-</Text>
+
           {/* Category */}
-          <Text className="line-clamp-1 text-gray-500 lighthouse italic text-sm">{category}</Text>
+          <Text className="line-clamp-1 text-gray-500 lighthouse italic text-sm">- {category}</Text>
         </View>
 
         {/* Location */}
