@@ -7,8 +7,8 @@ const TastyDiscounts = () => {
   return (
     <View className="flex-col gap-y-3">
       <View className="flex-col gap-y-1">
-        <Text className="text-xl font-bold text-black">Featured</Text>
-        <Text className="text-gray-500">Paid placements from our partners</Text>
+        <Text className="text-xl font-bold text-black">Tasty Discounts</Text>
+        <Text className="text-gray-500">Everyone enjoys these tasty discounts!</Text>
       </View>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         <View className="flex-row gap-x-3">

@@ -21,7 +21,7 @@ const HomeScreen = () => {
         contentContainerStyle={{paddingBottom: Platform.OS === 'android' ? 50 : 100}}
         className="p-4"
       >
-        <View className="flex-col gap-y-8">
+        <View className="flex-col gap-y-5">
           <Categories />
 
           <OffersNearYou />

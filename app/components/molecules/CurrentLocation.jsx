@@ -16,7 +16,7 @@ const CurrentLocation = () => {
   return (
     <TouchableOpacity className="flex-row items-center gap-x-1" onPress={onClickLocation}>
       <Text className="text-black text-2xl font-bold">Current Location</Text>
-      <LocationChevronIcon color="#707070" strokeWidth={4} />
+      <LocationChevronIcon color="#707070" strokeWidth={3} />
     </TouchableOpacity>
   )
 }
