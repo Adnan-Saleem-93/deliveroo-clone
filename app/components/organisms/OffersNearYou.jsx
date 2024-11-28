@@ -1,7 +1,7 @@
 import {View, ScrollView, Text} from 'react-native'
 import React from 'react'
 import {OffersNearYouList} from '../../data/offersNearYou'
-import FoodItemCard from '../molecules/Cards/FoodItemCard'
+import FoodItemCard from '../molecules/Cards/FeaturedItemCard'
 import SectionHeader from '../molecules/SectionHeader'
 
 const OffersNearYou = () => {
