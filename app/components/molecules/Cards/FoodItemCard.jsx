@@ -1,6 +1,6 @@
 import {View, Text, Image, TouchableOpacity} from 'react-native'
 import React from 'react'
-import {StarIcon as StarIconSolid} from 'react-native-heroicons/solid'
+import {StarIcon as StarIconSolid, MapPinIcon} from 'react-native-heroicons/solid'
 
 const FoodItemCard = ({id, text, rating, category, location, img}) => {
   return (
@@ -13,17 +13,18 @@ const FoodItemCard = ({id, text, rating, category, location, img}) => {
         {/* Rating & Category */}
         <View className="flex-row gap-x-2">
           {/* Rating */}
-          <View className="flex-row items-center justify-between gap-x-0.5">
-            <StarIconSolid size={14} color="#71a02b" />
-            <Text className="text-gray-500 text-sm">{rating}</Text>
+          <View className="flex-row items-center justify-between gap-x-1">
+            <StarIconSolid size={16} opacity={0.7} color="#71a02b" />
+            <Text className="text-gray-500">{rating}</Text>
           </View>
 
           {/* Category */}
-          <Text className="line-clamp-1 text-gray-500 italic text-sm">- {category}</Text>
+          <Text className="line-clamp-1 text-gray-500 italic">- {category}</Text>
         </View>
 
         {/* Location */}
-        <View className="flex-row gap-x-2">
+        <View className="flex-row gap-x-1">
+          <MapPinIcon size={16} color="darkgray" />
           <Text className="line-clamp-1 text-gray-500 text-sm">Nearby - {location}</Text>
         </View>
       </View>
