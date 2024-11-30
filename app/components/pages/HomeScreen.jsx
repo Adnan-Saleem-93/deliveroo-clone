@@ -1,11 +1,11 @@
 import {View, ScrollView, Platform} from 'react-native'
 import React, {useLayoutEffect} from 'react'
 import {useNavigation} from '@react-navigation/native'
-import HomeTemplate from '../components/templates/HomeTemplate'
-import Categories from '../components/organisms/Categories'
-import OffersNearYou from '../components/organisms/OffersNearYou'
-import Featured from '../components/organisms/Featured'
-import TastyDiscounts from '../components/organisms/TastyDiscounts'
+import HomeTemplate from '../templates/HomeTemplate'
+import Categories from '../organisms/Categories'
+import OffersNearYou from '../organisms/OffersNearYou'
+import Featured from '../organisms/Featured'
+import TastyDiscounts from '../organisms/TastyDiscounts'
 
 const HomeScreen = () => {
   const navigation = useNavigation()
