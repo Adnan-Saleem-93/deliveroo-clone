@@ -1,12 +1,12 @@
 import {View, Text} from 'react-native'
 import React from 'react'
 
-const FeaturedItems = () => {
+const ProfilePage = () => {
   return (
     <View>
-      <Text>FeaturedItems</Text>
+      <Text>ProfilePage</Text>
     </View>
   )
 }
 
-export default FeaturedItems
+export default ProfilePage

@@ -7,7 +7,7 @@ import OffersNearYou from '../organisms/OffersNearYou'
 import Featured from '../organisms/Featured'
 import TastyDiscounts from '../organisms/TastyDiscounts'
 
-const HomeScreen = () => {
+const HomePage = () => {
   const navigation = useNavigation()
 
   useLayoutEffect(() => {
@@ -35,4 +35,4 @@ const HomeScreen = () => {
   )
 }
 
-export default HomeScreen
+export default HomePage
