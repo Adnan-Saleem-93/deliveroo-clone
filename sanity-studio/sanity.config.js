@@ -5,7 +5,7 @@ import {schemaTypes} from './schemaTypes'
 
 export default defineConfig({
   name: 'default',
-  title: 'Deliveroo Clone',
+  title: 'Deliveroo-clone',
 
   projectId: 'w4lsvpjx',
   dataset: 'production',
