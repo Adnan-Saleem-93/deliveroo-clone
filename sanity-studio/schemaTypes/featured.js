@@ -1,4 +1,4 @@
-import {defineType, defineArrayMember, defineField} from 'sanity'
+import {defineType} from 'sanity'
 
 export default defineType({
   title: 'Featured',
