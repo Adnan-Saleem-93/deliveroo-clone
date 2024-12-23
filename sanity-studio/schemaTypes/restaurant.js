@@ -1,4 +1,4 @@
-import {defineField, defineType} from 'sanity'
+import {defineField} from 'sanity'
 
 export default {
   name: 'restaurant',
