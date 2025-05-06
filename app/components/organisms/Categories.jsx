@@ -26,9 +26,10 @@ const Categories = () => {
   return (
     <ScrollView horizontal showsHorizontalScrollIndicator={false}>
       <View className="flex-row items-center gap-x-3">
-        {categories.map((category) => {
-          return <CategoryCard key={category.id} {...category} />
-        })}
+        {categories.length > 0 &&
+          categories?.map((category) => {
+            return <CategoryCard key={category._id} {...category} />
+          })}
       </View>
     </ScrollView>
   )
