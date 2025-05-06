@@ -5,13 +5,14 @@ import Avatar from '../atoms/Avatar'
 import DeliverooLogo from '../atoms/DeliverooLogo'
 import CustomTextInput from '../molecules/CustomTextInput'
 import CurrentLocation from '../molecules/CurrentLocation'
-
+import {useNavigation} from '@react-navigation/native'
 const HomeScreenHeader = () => {
+  const navigation = useNavigation()
   return (
     <View className="flex-col gap-y-4 px-4 pb-4 bg-white">
       <View className="flex-row items-center justify-between w-full gap-x-2">
         {/* Logo */}
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Home')}>
           <DeliverooLogo />
         </TouchableOpacity>
 
@@ -19,7 +20,7 @@ const HomeScreenHeader = () => {
         <CurrentLocation />
 
         {/* Avatar Image */}
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
           <Avatar />
         </TouchableOpacity>
       </View>
