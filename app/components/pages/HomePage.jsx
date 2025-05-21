@@ -3,10 +3,7 @@ import React, {useEffect, useLayoutEffect, useState} from 'react'
 import {useNavigation} from '@react-navigation/native'
 import HomeTemplate from '../templates/HomeTemplate'
 import Categories from '../organisms/Categories'
-import OffersNearYou from '../organisms/OffersNearYou'
 import Featured from '../organisms/Featured'
-import TastyDiscounts from '../organisms/TastyDiscounts'
-import {client} from '../../../sanity-studio/sanity'
 import {getFeaturedCategories} from '../../utils/api'
 
 const HomePage = () => {
@@ -17,6 +14,7 @@ const HomePage = () => {
     ;(async () => {
       try {
         const response = await getFeaturedCategories()
+        // console.log(response)
         setFeaturedCategories(response)
       } catch (error) {
         console.log(error)
@@ -42,11 +40,11 @@ const HomePage = () => {
         <View className="flex-col gap-y-5">
           <Categories />
 
-          <OffersNearYou />
-
-          <Featured />
-
-          <TastyDiscounts />
+          {featuredCategories.length > 0
+            ? featuredCategories.map((category) => {
+                return <Featured key={category._id} {...category} />
+              })
+            : null}
         </View>
       </ScrollView>
     </HomeTemplate>
