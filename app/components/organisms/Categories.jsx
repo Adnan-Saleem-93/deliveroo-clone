@@ -1,10 +1,11 @@
-import {ActivityIndicator, ScrollView, View} from 'react-native'
+import {ScrollView, View} from 'react-native'
 import React from 'react'
 import CategoryCard from '../molecules/Cards/CategoryCard'
 import {useState} from 'react'
 import {useEffect} from 'react'
-import {getCategories} from '../../../sanity-studio/sanity'
+
 import SkeletonCard from '../molecules/Cards/SkeletonCard'
+import {getCategories} from '../../utils/api'
 
 const Categories = () => {
   const [categories, setCategories] = useState([])
@@ -32,12 +33,12 @@ const Categories = () => {
     <ScrollView horizontal showsHorizontalScrollIndicator={false}>
       <View className="flex-row items-center gap-x-3">
         {isLoading
-          ? Array.from({length: 5}).map((number) => {
-              return <SkeletonCard key={number} />
+          ? Array.from({length: 5}).map((_, index) => {
+              return <SkeletonCard key={index} />
             })
-          : categories.length > 0 &&
+          : categories?.length > 0 &&
             categories?.map((category) => {
-              return <CategoryCard key={category._id} {...category} />
+              return <CategoryCard key={category?._id} {...category} />
             })}
       </View>
     </ScrollView>
