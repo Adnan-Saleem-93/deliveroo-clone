@@ -1,6 +1,6 @@
 import {View, ScrollView} from 'react-native'
 import React, {useEffect, useState} from 'react'
-import FoodItemCard from '../molecules/Cards/FeaturedItemCard'
+import FeaturedItemCard from '../molecules/Cards/FeaturedItemCard'
 import SectionHeader from '../molecules/SectionHeader'
 import {useNavigation} from '@react-navigation/native'
 import {getFeaturedCategoryById} from '../../utils/api'
@@ -34,7 +34,7 @@ const FeaturedCategoryItem = ({_id, name, short_description}) => {
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         <View className="flex-row gap-x-3">
           {featureItem?.restaurants?.map((restaurant) => {
-            return <FoodItemCard key={restaurant?._id} {...restaurant} />
+            return <FeaturedItemCard key={restaurant?._id} {...restaurant} />
           })}
         </View>
       </ScrollView>

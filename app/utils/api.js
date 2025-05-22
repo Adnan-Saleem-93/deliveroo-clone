@@ -54,3 +54,24 @@ export async function getFeaturedCategoryById(id) {
     return []
   }
 }
+
+export async function getRestaurantById(id) {
+  try {
+    const restaurant = await client.fetch(
+      `*[_type == "restaurant" && _id == $id]{
+        ...,
+        "imageUrl": image.asset->url,
+        dishes[]->{
+          ...,
+        }
+      }[0]`,
+      {id},
+      {next: {revalidate: 600}}
+    )
+
+    return restaurant
+  } catch (error) {
+    console.log(error)
+    return []
+  }
+}
