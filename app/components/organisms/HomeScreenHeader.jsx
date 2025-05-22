@@ -1,11 +1,11 @@
 import {TouchableOpacity, View} from 'react-native'
-import React from 'react'
 import {AdjustmentsHorizontalIcon} from 'react-native-heroicons/outline'
 import Avatar from '../atoms/Avatar'
 import DeliverooLogo from '../atoms/DeliverooLogo'
 import CustomTextInput from '../molecules/CustomTextInput'
 import CurrentLocation from '../molecules/CurrentLocation'
 import {useNavigation} from '@react-navigation/native'
+
 const HomeScreenHeader = () => {
   const navigation = useNavigation()
   return (

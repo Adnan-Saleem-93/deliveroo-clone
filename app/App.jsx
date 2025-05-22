@@ -3,7 +3,7 @@ import {NavigationContainer} from '@react-navigation/native'
 import {createNativeStackNavigator} from '@react-navigation/native-stack'
 import HomePage from './components/pages/HomePage'
 import {StatusBar} from 'expo-status-bar'
-import FeaturedItemsPage from './components/pages/FeaturedItemsPage'
+import RestaurantPage from './components/pages/RestaurantPage'
 import OffersPage from './components/pages/OffersPage'
 import ProfilePage from './components/pages/ProfilePage'
 import TastyDiscountsPage from './components/pages/TastyDiscountsPage'
@@ -15,7 +15,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Home" component={HomePage} />
-        <Stack.Screen name="FeaturedItems" component={FeaturedItemsPage} />
+        <Stack.Screen name="Restaurant" component={RestaurantPage} />
         <Stack.Screen name="Offers" component={OffersPage} />
         <Stack.Screen name="Profile" component={ProfilePage} />
         <Stack.Screen name="TastyDiscounts" component={TastyDiscountsPage} />
