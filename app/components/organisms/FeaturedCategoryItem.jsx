@@ -1,12 +1,11 @@
 import {View, ScrollView} from 'react-native'
 import React, {useEffect, useState} from 'react'
-import {OffersNearYouList} from '../../data/offersNearYou'
 import FoodItemCard from '../molecules/Cards/FeaturedItemCard'
 import SectionHeader from '../molecules/SectionHeader'
 import {useNavigation} from '@react-navigation/native'
 import {getFeaturedCategoryById} from '../../utils/api'
 
-const Featured = ({_id, name, short_description}) => {
+const FeaturedCategoryItem = ({_id, name, short_description}) => {
   const [featureItem, setFeatureItem] = useState([])
 
   useEffect(() => {
@@ -43,4 +42,4 @@ const Featured = ({_id, name, short_description}) => {
   )
 }
 
-export default Featured
+export default FeaturedCategoryItem
