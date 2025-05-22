@@ -3,7 +3,7 @@ import React from 'react'
 import {StarIcon as StarIconSolid, MapPinIcon} from 'react-native-heroicons/solid'
 import {useNavigation} from '@react-navigation/native'
 
-const FoodItemCard = ({_id, name, rating, category, address, imageUrl}) => {
+const FeaturedCategoryItem = ({_id, name, rating, category, address, imageUrl}) => {
   const navigation = useNavigation()
   return (
     <TouchableOpacity
@@ -39,4 +39,4 @@ const FoodItemCard = ({_id, name, rating, category, address, imageUrl}) => {
   )
 }
 
-export default FoodItemCard
+export default FeaturedCategoryItem

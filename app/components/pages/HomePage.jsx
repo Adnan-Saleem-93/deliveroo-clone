@@ -3,7 +3,7 @@ import React, {useEffect, useLayoutEffect, useState} from 'react'
 import {useNavigation} from '@react-navigation/native'
 import HomeTemplate from '../templates/HomeTemplate'
 import Categories from '../organisms/Categories'
-import FeaturedCategoryItem from '../organisms/FeaturedCategoryItem'
+import FeaturedCategorySection from '../organisms/FeaturedCategorySection'
 import {getFeaturedCategories} from '../../utils/api'
 
 const HomePage = () => {
@@ -42,7 +42,7 @@ const HomePage = () => {
 
           {featuredCategories.length > 0
             ? featuredCategories.map((category, idx) => {
-                return <FeaturedCategoryItem key={category?._id || idx} {...category} />
+                return <FeaturedCategorySection key={category?._id || idx} {...category} />
               })
             : null}
         </View>
