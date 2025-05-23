@@ -25,9 +25,7 @@ const RestaurantPageLoading = () => {
         </View>
 
         <View className="p-4 bg-slate-100 pt-10">
-          <View className="flex flex-row justify-between gap-x-4 w-full">
-            <View className="bg-slate-400 h-8 w-2/3 animate-pulse" />
-          </View>
+          <View className="bg-slate-400 h-8 w-2/3 animate-pulse" />
         </View>
 
         <View className="w-full">
@@ -43,7 +41,7 @@ const RestaurantPageLoading = () => {
                   <View className="bg-slate-200 h-8 w-full animate-pulse" />
                 </View>
                 <View>
-                  <View className="rounded-md h-40 w-40 bg-slate-200 animate-pulse" />
+                  <View className="rounded-md h-40 w-40 bg-slate-300 animate-pulse" />
                 </View>
               </View>
             )
