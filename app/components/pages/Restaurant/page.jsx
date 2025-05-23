@@ -1,18 +1,18 @@
 import {
   View,
   Text,
-  SafeAreaView,
   StyleSheet,
   Platform,
   StatusBar,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  ScrollView
 } from 'react-native'
 import React, {useEffect, useLayoutEffect, useState} from 'react'
 import {useNavigation} from '@react-navigation/native'
-import AlternateHeader from '../organisms/AlternateHeader'
-import {getRestaurantById} from '../../utils/api'
 import {ArrowLongLeftIcon} from 'react-native-heroicons/solid'
+import {getRestaurantById} from '../../../utils/api'
+import RestaurantPageLoading from './loading'
 
 const RestaurantPage = ({route}) => {
   const {_id} = route.params
@@ -51,35 +51,37 @@ const RestaurantPage = ({route}) => {
   if (!restaurantData) return null
 
   return (
-    <SafeAreaView style={styles.AndroidSafeArea}>
-      <View className="bg-slate-100 w-screen h-screen">
+    // <SafeAreaView style={styles.AndroidSafeArea}>
+    <ScrollView
+      contentContainerStyle={{paddingBottom: Platform.OS === 'android' ? 50 : 40}}
+      className="bg-slate-100"
+    >
+      <StatusBar barStyle="light-content" />
+      <View>
         <TouchableOpacity
           style={styles.BackArrow}
           onPress={() => (navigation.canGoBack ? navigation.goBack() : navigation.navigate('Home'))}
         >
           <ArrowLongLeftIcon color="#808080" strokeWidth={4} size={32} />
         </TouchableOpacity>
-        <View className="w-full h-full">
-          {isFetchingData ? (
-            <View className="bg-slate-400 h-64 w-full animate-pulse"></View>
-          ) : (
+        {isFetchingData ? (
+          <RestaurantPageLoading />
+        ) : (
+          <View className="w-full h-full">
             <Image
               progressiveRenderingEnabled
               src={restaurantData?.imageUrl}
-              className="w-full h-64"
+              className="w-full h-72"
             />
-          )}
 
-          <View className="p-4">
-            {isFetchingData ? (
-              <View className="bg-slate-400 h-10 w-60 animate-pulse"></View>
-            ) : (
+            <View className="p-4 bg-white">
               <Text className="text-3xl font-bold">{restaurantData?.name}</Text>
-            )}
+            </View>
           </View>
-        </View>
+        )}
       </View>
-    </SafeAreaView>
+    </ScrollView>
+    //</SafeAreaView>
   )
 }
 
@@ -92,8 +94,8 @@ const styles = StyleSheet.create({
   },
   BackArrow: {
     position: 'absolute',
-    top: 10,
-    left: 10,
+    top: 60,
+    left: 15,
     backgroundColor: '#f8fafc',
     borderRadius: 50,
     padding: 4,
