@@ -3,10 +3,11 @@ import {NavigationContainer} from '@react-navigation/native'
 import {createNativeStackNavigator} from '@react-navigation/native-stack'
 import HomePage from './components/pages/HomePage'
 import {StatusBar} from 'expo-status-bar'
-import RestaurantPage from './components/pages/RestaurantPage'
+
 import OffersPage from './components/pages/OffersPage'
 import ProfilePage from './components/pages/ProfilePage'
 import TastyDiscountsPage from './components/pages/TastyDiscountsPage'
+import RestaurantPage from './components/pages/Restaurant/page'
 
 const Stack = createNativeStackNavigator()
 
