@@ -26,11 +26,7 @@ const FeaturedCategoryItem = ({_id, name, short_description}) => {
 
   return (
     <View className="flex-col gap-y-3">
-      <SectionHeader
-        title={name}
-        subTitle={short_description}
-        onTouchLink={() => navigation.navigate('FeaturedItems')}
-      />
+      <SectionHeader title={name} subTitle={short_description} />
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         <View className="flex-row gap-x-3">
           {featureItem?.restaurants?.map((restaurant) => {
