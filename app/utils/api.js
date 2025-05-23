@@ -61,8 +61,12 @@ export async function getRestaurantById(id) {
       `*[_type == "restaurant" && _id == $id]{
         ...,
         "imageUrl": image.asset->url,
+        category->{
+            title
+        },
         dishes[]->{
           ...,
+          "imageUrl": image.asset->url,
         }
       }[0]`,
       {id},
