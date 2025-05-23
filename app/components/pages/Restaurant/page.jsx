@@ -19,7 +19,7 @@ const RestaurantPage = ({route}) => {
   const {_id} = route.params
 
   const [restaurantData, setRestaurantData] = useState(null)
-  const [isFetchingData, setIsFetchingData] = useState(false)
+  const [isFetchingData, setIsFetchingData] = useState(true)
 
   useEffect(() => {
     ;(async () => {

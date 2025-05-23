@@ -5,7 +5,7 @@ import HomeScreenHeader from '../organisms/HomeScreenHeader'
 const HomeTemplate = ({children}) => {
   return (
     <SafeAreaView style={styles.AndroidSafeArea}>
-      <View className="bg-slate-100 w-screen h-screen">
+      <View className="bg-slate-100 w-screen h-screen ">
         {/* HEADER */}
         <HomeScreenHeader />
 
@@ -21,6 +21,6 @@ const styles = StyleSheet.create({
   AndroidSafeArea: {
     flex: 1,
     backgroundColor: 'white',
-    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight + 10 : 0
   }
 })
