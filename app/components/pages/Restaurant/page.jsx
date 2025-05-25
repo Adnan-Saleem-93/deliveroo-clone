@@ -1,23 +1,13 @@
-import {
-  View,
-  Text,
-  StyleSheet,
-  Platform,
-  StatusBar,
-  Image,
-  TouchableOpacity,
-  ScrollView,
-  SafeAreaView
-} from 'react-native'
+import {View, Text, StyleSheet, Platform, StatusBar, Image, ScrollView} from 'react-native'
 import React, {useEffect, useLayoutEffect, useState} from 'react'
 import {useNavigation} from '@react-navigation/native'
-import {ArrowLongLeftIcon, StarIcon as StarIconSolid} from 'react-native-heroicons/solid'
+import {StarIcon as StarIconSolid} from 'react-native-heroicons/solid'
 import {getRestaurantById} from '../../../utils/api'
 import RestaurantPageLoading from './loading'
-import {ChevronRightIcon} from 'react-native-heroicons/outline'
 import RestaurantNotFound from './not-found'
 import BackButton from '../../atoms/BackButton'
 import HaveFoodAllergy from '../../molecules/HaveFoodAllergy'
+import DishItem from '../../molecules/Cards/DishItem'
 
 const RestaurantPage = ({route}) => {
   const {_id} = route.params
@@ -53,7 +43,7 @@ const RestaurantPage = ({route}) => {
     })
   }, [])
 
-  if (!restaurantData) {
+  if (!restaurantData && !isFetchingData) {
     return <RestaurantNotFound />
   }
 
@@ -64,7 +54,7 @@ const RestaurantPage = ({route}) => {
     >
       <View>
         <BackButton classes="absolute top-16 left-4 z-50" />
-        {!isFetchingData ? (
+        {isFetchingData ? (
           <RestaurantPageLoading />
         ) : (
           <View className="w-full h-full">
@@ -74,9 +64,9 @@ const RestaurantPage = ({route}) => {
               className="w-full h-72"
             />
 
-            <View className="px-4 py-8 bg-white flex flex-col gap-y-4">
+            <View className="px-4 py-8 bg-white flex flex-col gap-y-4 w-full">
               <Text className="text-3xl font-bold">{restaurantData?.name}</Text>
-              <View className="flex flex-row w-full items-center gap-x-3">
+              <View className="flex flex-row items-center gap-x-3 overflow-hidden">
                 <View className="flex flex-row items-center">
                   <StarIconSolid size={24} opacity={0.7} color="#77BD28" />
                   <Text className="text-[#88AC5B] text-xl font-medium">
@@ -88,7 +78,9 @@ const RestaurantPage = ({route}) => {
                   {restaurantData?.category?.title}
                 </Text>
                 <View className="h-1.5 w-1.5 bg-[#9A9A9A] rounded-full" />
-                <Text className="text-[#9A9A9A] text-xl font-medium">$$</Text>
+                <Text className="text-[#9A9A9A] text-xl font-medium">
+                  {restaurantData?.address}
+                </Text>
               </View>
 
               <Text className="text-xl text-[#9A9A9A] font-semibold line-clamp-2">
@@ -103,30 +95,8 @@ const RestaurantPage = ({route}) => {
             </View>
 
             <View className="w-full bg-white">
-              {restaurantData?.dishes?.map((dish, idx) => {
-                return (
-                  <TouchableOpacity
-                    key={`dish-${idx}`}
-                    className="flex flex-row justify-between gap-x-6 border border-gray-200 w-full p-4"
-                  >
-                    <View className="flex flex-col justify-center gap-y-3 w-1/2">
-                      <Text className="text-2xl text-[#353535] font-bold">{dish?.name}</Text>
-                      <Text className="text-xl text-[#9A9A9A] font-semibold line-clamp-2">
-                        {dish?.short_description}
-                      </Text>
-                      <Text className="text-xl text-[#9A9A9A] font-semibold line-clamp-2">
-                        ${dish?.price}
-                      </Text>
-                    </View>
-                    <View>
-                      <Image
-                        progressiveRenderingEnabled
-                        src={dish?.imageUrl}
-                        className="w-40 h-40"
-                      />
-                    </View>
-                  </TouchableOpacity>
-                )
+              {restaurantData?.dishes?.map((dish) => {
+                return <DishItem key={dish?._id} {...dish} />
               })}
             </View>
           </View>
