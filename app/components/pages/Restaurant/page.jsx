@@ -6,7 +6,8 @@ import {
   StatusBar,
   Image,
   TouchableOpacity,
-  ScrollView
+  ScrollView,
+  SafeAreaView
 } from 'react-native'
 import React, {useEffect, useLayoutEffect, useState} from 'react'
 import {useNavigation} from '@react-navigation/native'
@@ -14,6 +15,8 @@ import {ArrowLongLeftIcon, StarIcon as StarIconSolid} from 'react-native-heroico
 import {getRestaurantById} from '../../../utils/api'
 import RestaurantPageLoading from './loading'
 import {ChevronRightIcon} from 'react-native-heroicons/outline'
+import RestaurantNotFound from './not-found'
+import BackButton from '../../atoms/BackButton'
 
 const RestaurantPage = ({route}) => {
   const {_id} = route.params
@@ -49,21 +52,17 @@ const RestaurantPage = ({route}) => {
     })
   }, [])
 
-  if (!restaurantData) return null
+  if (!restaurantData) {
+    return <RestaurantNotFound />
+  }
 
   return (
     <ScrollView
       contentContainerStyle={{paddingBottom: Platform.OS === 'android' ? 50 : 40}}
       className="bg-slate-100"
     >
-      <StatusBar barStyle="default" />
       <View>
-        <TouchableOpacity
-          style={styles.BackArrow}
-          onPress={() => (navigation.canGoBack ? navigation.goBack() : navigation.navigate('Home'))}
-        >
-          <ArrowLongLeftIcon color="#808080" strokeWidth={4} size={32} />
-        </TouchableOpacity>
+        <BackButton classes="absolute top-16 left-4 z-50" />
         {isFetchingData ? (
           <RestaurantPageLoading />
         ) : (
