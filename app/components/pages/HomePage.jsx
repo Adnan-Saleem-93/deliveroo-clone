@@ -14,7 +14,6 @@ const HomePage = () => {
     ;(async () => {
       try {
         const response = await getFeaturedCategories()
-        // console.log(response)
         setFeaturedCategories(response)
       } catch (error) {
         console.log(error)
