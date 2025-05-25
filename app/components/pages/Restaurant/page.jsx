@@ -1,4 +1,13 @@
-import {View, Text, StyleSheet, Platform, StatusBar, Image, ScrollView} from 'react-native'
+import {
+  View,
+  Text,
+  StyleSheet,
+  Platform,
+  StatusBar,
+  Image,
+  ScrollView,
+  VirtualizedList
+} from 'react-native'
 import React, {useEffect, useLayoutEffect, useState} from 'react'
 import {useNavigation} from '@react-navigation/native'
 import {StarIcon as StarIconSolid} from 'react-native-heroicons/solid'
@@ -47,17 +56,35 @@ const RestaurantPage = ({route}) => {
     return <RestaurantNotFound />
   }
 
-  return (
+  const getItem = (data, index) => {
+    if (data) return data[index]
+    else return null
+  }
+  const getItemCount = (data) => (data ? data?.length : 0)
+
+  return isFetchingData ? (
     <ScrollView
       contentContainerStyle={{paddingBottom: Platform.OS === 'android' ? 50 : 40}}
       className="bg-slate-100"
     >
-      <View>
-        <BackButton classes="absolute top-16 left-4 z-50" />
-        {isFetchingData ? (
-          <RestaurantPageLoading />
-        ) : (
-          <View className="w-full h-full">
+      <RestaurantPageLoading />
+    </ScrollView>
+  ) : (
+    <VirtualizedList
+      className="bg-slate-100"
+      contentContainerStyle={{paddingBottom: Platform.OS === 'android' ? 50 : 40}}
+      data={restaurantData?.dishes}
+      initialNumToRender={4}
+      renderItem={({item}) => {
+        return <DishItem {...item} />
+      }}
+      keyExtractor={({item}) => item?._id}
+      getItemCount={getItemCount}
+      getItem={getItem}
+      ListHeaderComponent={
+        <View>
+          <BackButton classes="absolute top-16 left-4 z-50" />
+          <View className="w-full">
             <Image
               progressiveRenderingEnabled
               src={restaurantData?.imageUrl}
@@ -78,7 +105,7 @@ const RestaurantPage = ({route}) => {
                   {restaurantData?.category?.title}
                 </Text>
                 <View className="h-1.5 w-1.5 bg-[#9A9A9A] rounded-full" />
-                <Text className="text-[#9A9A9A] text-xl font-medium">
+                <Text className="text-[#9A9A9A] text-xl font-medium line-clamp-1">
                   {restaurantData?.address}
                 </Text>
               </View>
@@ -93,16 +120,10 @@ const RestaurantPage = ({route}) => {
             <View className="p-4 pt-10">
               <Text className="text-2xl text-[#353535] font-bold">Menu</Text>
             </View>
-
-            <View className="w-full bg-white">
-              {restaurantData?.dishes?.map((dish) => {
-                return <DishItem key={dish?._id} {...dish} />
-              })}
-            </View>
           </View>
-        )}
-      </View>
-    </ScrollView>
+        </View>
+      }
+    />
   )
 }
 
