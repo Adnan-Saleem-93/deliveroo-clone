@@ -25,7 +25,7 @@ const DishItem = ({_id, imageUrl, price, name, short_description}) => {
   }
 
   return (
-    <View className="flex flex-col justify-between gap-y-6 border border-gray-200 w-full p-4">
+    <View className="flex flex-col justify-between gap-y-6 border border-gray-200 w-full p-4 bg-white">
       <TouchableOpacity
         className="flex flex-row justify-between gap-x-6 w-full"
         onPress={() => setIsPressed(!isPressed)}

@@ -1,11 +1,13 @@
 import {Text, View} from 'react-native'
 import {ChevronRightIcon} from 'react-native-heroicons/outline'
 import HaveFoodAllergy from '../../molecules/HaveFoodAllergy'
+import BackButton from '../../atoms/BackButton'
 
 const RestaurantPageLoading = () => {
   return (
     <View className="bg-white">
       <View className="w-full h-full">
+        <BackButton classes="absolute top-16 left-4 z-50" />
         <View className="bg-slate-400 h-72 w-full animate-pulse"></View>
 
         <View className="px-4 flex flex-col gap-y-6 py-8">
