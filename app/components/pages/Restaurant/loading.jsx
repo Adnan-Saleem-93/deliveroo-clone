@@ -1,5 +1,6 @@
-import {View} from 'react-native'
+import {Text, View} from 'react-native'
 import {ChevronRightIcon} from 'react-native-heroicons/outline'
+import HaveFoodAllergy from '../../molecules/HaveFoodAllergy'
 
 const RestaurantPageLoading = () => {
   return (
@@ -17,15 +18,10 @@ const RestaurantPageLoading = () => {
           </View>
         </View>
 
-        <View className="border border-gray-200 p-4">
-          <View className="flex flex-row justify-between gap-x-4 w-full">
-            <View className="bg-slate-400 h-8 w-2/3 animate-pulse" />
-            <ChevronRightIcon color="#94a3b8" strokeWidth={3} />
-          </View>
-        </View>
+        <HaveFoodAllergy />
 
-        <View className="p-4 bg-slate-100 pt-10">
-          <View className="bg-slate-400 h-8 w-2/3 animate-pulse" />
+        <View className="p-4 pt-10 bg-slate-100">
+          <Text className="text-2xl text-[#353535] font-bold">Menu</Text>
         </View>
 
         <View className="w-full">

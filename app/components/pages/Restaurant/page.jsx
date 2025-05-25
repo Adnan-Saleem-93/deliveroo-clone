@@ -17,6 +17,7 @@ import RestaurantPageLoading from './loading'
 import {ChevronRightIcon} from 'react-native-heroicons/outline'
 import RestaurantNotFound from './not-found'
 import BackButton from '../../atoms/BackButton'
+import HaveFoodAllergy from '../../molecules/HaveFoodAllergy'
 
 const RestaurantPage = ({route}) => {
   const {_id} = route.params
@@ -63,7 +64,7 @@ const RestaurantPage = ({route}) => {
     >
       <View>
         <BackButton classes="absolute top-16 left-4 z-50" />
-        {isFetchingData ? (
+        {!isFetchingData ? (
           <RestaurantPageLoading />
         ) : (
           <View className="w-full h-full">
@@ -95,20 +96,13 @@ const RestaurantPage = ({route}) => {
               </Text>
             </View>
 
-            <View className="border border-gray-200 p-4 bg-white">
-              <TouchableOpacity className="flex flex-row justify-between gap-x-4 w-full">
-                <Text className="text-xl text-[#353535] font-semibold">Have a food allergy?</Text>
-                <ChevronRightIcon color="#94a3b8" strokeWidth={3} />
-              </TouchableOpacity>
-            </View>
+            <HaveFoodAllergy />
 
             <View className="p-4 pt-10">
-              <Text className="text-2xl text-[#353535] font-bold">
-                {restaurantData?.name?.toLowerCase()} recommends
-              </Text>
+              <Text className="text-2xl text-[#353535] font-bold">Menu</Text>
             </View>
 
-            <View className="w-full">
+            <View className="w-full bg-white">
               {restaurantData?.dishes?.map((dish, idx) => {
                 return (
                   <TouchableOpacity
