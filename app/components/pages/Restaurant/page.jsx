@@ -72,7 +72,7 @@ const RestaurantPage = ({route}) => {
   ) : (
     <VirtualizedList
       className="bg-slate-100"
-      contentContainerStyle={{paddingBottom: Platform.OS === 'android' ? 50 : 40}}
+      contentContainerStyle={{paddingBottom: Platform.OS === 'android' ? 50 : 30}}
       data={restaurantData?.dishes}
       initialNumToRender={4}
       renderItem={({item}) => {
