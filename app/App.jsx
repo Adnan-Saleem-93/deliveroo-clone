@@ -17,7 +17,11 @@ export default function App() {
         <Stack.Screen name="Home" component={HomePage} />
         <Stack.Screen name="Restaurant" component={RestaurantPage} />
         <Stack.Screen name="Profile" component={ProfilePage} />
-        <Stack.Screen name="Cart" component={CartPage} />
+        <Stack.Screen
+          name="Cart"
+          component={CartPage}
+          options={{presentation: 'modal', headerShown: false}}
+        />
       </Stack.Navigator>
       <StatusBar style="auto" />
       <CartCard />
