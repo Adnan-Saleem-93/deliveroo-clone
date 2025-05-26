@@ -16,10 +16,12 @@ export const useCartStore = create((set) => ({
       const matchedItemIndex = _items.findIndex((x) => x._id === id)
 
       if (matchedItemIndex > -1) {
+        const item = _items[matchedItemIndex]
+        const total = state.totalPrice - item?.price || 0
         _items.splice(matchedItemIndex, 1)
-        return {items: _items}
+        return {...state, items: _items, totalPrice: Number(total?.toFixed(2))}
       }
-      return {items: [...state.items]}
+      return {...state, items: [...state.items]}
     }),
   clearCart: () => set({items: []}),
 
