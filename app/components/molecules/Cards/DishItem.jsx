@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useMemo, useState} from 'react'
 import {Image, Text, TouchableOpacity, View} from 'react-native'
 import {useCartStore} from '../../../store/cart'
 
@@ -24,6 +24,8 @@ const DishItem = ({_id, imageUrl, price, name, short_description}) => {
     removeItemFromCart(_id)
   }
 
+  const isItemNotAddedToCart = useMemo(() => itemCount === 0, [itemCount])
+
   return (
     <TouchableOpacity
       className="flex flex-col justify-between gap-y-6 border border-gray-200 w-full p-4 bg-white"
@@ -48,21 +50,24 @@ const DishItem = ({_id, imageUrl, price, name, short_description}) => {
             <View className="flex flex-row gap-x-3 items-center w-full">
               {/* REMOVE Item from Cart Button */}
               <TouchableOpacity
-                className="w-10 h-10 flex items-center justify-center rounded-full bg-[#00CCBC]"
-                onPress={removeItem}
+                className={`${
+                  isItemNotAddedToCart ? 'opacity-50' : ''
+                } w-8 h-8 flex items-center justify-center rounded-full bg-[#00CCBC]`}
+                onPress={() => (isItemNotAddedToCart ? null : removeItem())}
+                disabled={isItemNotAddedToCart}
               >
-                <Text className="text-4xl font-extrabold text-white">-</Text>
+                <Text className="text-2xl font-extrabold text-white">-</Text>
               </TouchableOpacity>
 
               {/* Item Count */}
-              <Text className="text-2xl font-semibold">{itemCount}</Text>
+              <Text className="text-xl font-medium">{itemCount}</Text>
 
               {/* ADD Item to Cart Button */}
               <TouchableOpacity
-                className="w-10 h-10 flex items-center justify-center rounded-full bg-[#00CCBC]"
+                className="w-8 h-8 flex items-center justify-center rounded-full bg-[#00CCBC]"
                 onPress={addItem}
               >
-                <Text className="text-4xl font-extrabold text-white">+</Text>
+                <Text className="text-xl font-extrabold text-white">+</Text>
               </TouchableOpacity>
             </View>
           </View>
