@@ -1,5 +1,4 @@
 import {Text, View} from 'react-native'
-import {ChevronRightIcon} from 'react-native-heroicons/outline'
 import HaveFoodAllergy from '../../molecules/HaveFoodAllergy'
 import BackButton from '../../atoms/BackButton'
 
@@ -39,7 +38,7 @@ const RestaurantPageLoading = () => {
                   <View className="bg-slate-200 h-8 w-full animate-pulse" />
                 </View>
                 <View>
-                  <View className="rounded-md h-40 w-40 bg-slate-300 animate-pulse" />
+                  <View className="rounded-md h-28 w-28 bg-slate-300 animate-pulse" />
                 </View>
               </View>
             )

@@ -1,6 +1,7 @@
 import React, {useEffect, useMemo, useState} from 'react'
 import {Image, Text, TouchableOpacity, View} from 'react-native'
 import {useCartStore} from '../../../store/cart'
+import RoundButton from '../../atoms/RoundButton'
 
 const DishItem = ({_id, imageUrl, price, name, short_description}) => {
   const [isPressed, setIsPressed] = useState(false)
@@ -18,7 +19,7 @@ const DishItem = ({_id, imageUrl, price, name, short_description}) => {
   }, [items])
 
   const addItem = () => {
-    addItemToCart({_id, price, name})
+    addItemToCart({_id, price, name, imageUrl})
   }
   const removeItem = () => {
     removeItemFromCart(_id)
@@ -49,28 +50,18 @@ const DishItem = ({_id, imageUrl, price, name, short_description}) => {
         <View className="w-full">
           <View className="flex flex-row gap-x-3 items-center w-full">
             {/* REMOVE Item from Cart Button */}
-            <TouchableOpacity
-              className={`${
-                isItemNotAddedToCart ? 'opacity-50' : ''
-              } w-8 h-8 flex items-center justify-center rounded-full bg-[#00CCBC]`}
-              onPress={() => {
-                isItemNotAddedToCart ? null : removeItem()
-              }}
+            <RoundButton
+              buttonText="-"
+              onPressAction={() => (isItemNotAddedToCart ? null : removeItem())}
               disabled={isItemNotAddedToCart}
-            >
-              <Text className="text-2xl font-extrabold text-white">-</Text>
-            </TouchableOpacity>
+              classes={isItemNotAddedToCart ? 'opacity-50' : ''}
+            />
 
             {/* Item Count */}
             <Text className="text-xl font-medium">{itemCount}</Text>
 
             {/* ADD Item to Cart Button */}
-            <TouchableOpacity
-              className="w-8 h-8 flex items-center justify-center rounded-full bg-[#00CCBC]"
-              onPress={addItem}
-            >
-              <Text className="text-xl font-extrabold text-white">+</Text>
-            </TouchableOpacity>
+            <RoundButton buttonText="+" onPressAction={addItem} />
           </View>
         </View>
       )}
