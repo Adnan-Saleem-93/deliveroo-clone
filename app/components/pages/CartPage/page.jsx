@@ -4,9 +4,11 @@ import {useCartStore} from '../../../store/cart'
 import RoundButton from '../../atoms/RoundButton'
 import {XMarkIcon} from 'react-native-heroicons/outline'
 import {filterItemCountById} from '../../../utils/helpers'
+import {useNavigation} from '@react-navigation/native'
 
 const CartPage = () => {
   const {items, setShowCartCard, totalPrice} = useCartStore()
+  const navigation = useNavigation()
 
   useEffect(() => {
     setShowCartCard(false)
@@ -33,6 +35,9 @@ const CartPage = () => {
                 buttonText={<XMarkIcon strokeWidth={5} color="#fff" />}
                 classes="!w-12 !h-12"
                 textClasses="!text-4xl tracking-widest align-middle text-center"
+                onPressAction={() =>
+                  navigation.canGoBack ? navigation.goBack() : navigation.navigate('Home')
+                }
               />
             </View>
           </View>
