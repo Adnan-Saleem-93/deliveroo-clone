@@ -75,8 +75,8 @@ const RestaurantPage = ({route}) => {
       contentContainerStyle={{paddingBottom: Platform.OS === 'android' ? 50 : 30}}
       data={restaurantData?.dishes}
       initialNumToRender={4}
-      renderItem={({item}) => {
-        return <DishItem {...item} />
+      renderItem={({item, index}) => {
+        return <DishItem key={item?._id || `dish-${index + 1}`} {...item} />
       }}
       keyExtractor={({item}) => item?._id}
       getItemCount={getItemCount}

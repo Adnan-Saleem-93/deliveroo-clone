@@ -2,7 +2,14 @@ import {create} from 'zustand'
 
 export const useCartStore = create((set) => ({
   items: [],
-  addItemToCart: (newItem) => set((state) => ({items: [...state.items, newItem]})),
+  totalPrice: 0,
+  showCartCard: true,
+  addItemToCart: (newItem) =>
+    set((state) => {
+      const total = state.totalPrice + newItem.price
+
+      return {items: [...state.items, newItem], totalPrice: Number(total?.toFixed(2))}
+    }),
   removeItemFromCart: (id) =>
     set((state) => {
       const _items = [...state.items]
@@ -14,5 +21,10 @@ export const useCartStore = create((set) => ({
       }
       return {items: [...state.items]}
     }),
-  clearCart: () => set({items: []})
+  clearCart: () => set({items: []}),
+
+  setShowCartCard: (flag) =>
+    set((state) => {
+      return {...state, showCartCard: flag}
+    })
 }))
