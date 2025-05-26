@@ -1,8 +1,9 @@
-import {View, Text, TouchableOpacity} from 'react-native'
+import {View, Text, TouchableOpacity, Image, ScrollView} from 'react-native'
 import React, {useEffect} from 'react'
 import {useCartStore} from '../../../store/cart'
 import RoundButton from '../../atoms/RoundButton'
 import {XMarkIcon} from 'react-native-heroicons/outline'
+import {filterItemCountById} from '../../../utils/helpers'
 
 const CartPage = () => {
   const {items, setShowCartCard, totalPrice} = useCartStore()
@@ -16,7 +17,7 @@ const CartPage = () => {
   }, [])
 
   return (
-    <View className="w-full h-full">
+    <ScrollView className="w-full h-full">
       <View className="h-full w-full flex flex-col gap-y-8 justify-between">
         <View className="flex flex-col gap-y-8">
           <View className="px-4 py-6 w-full flex flex-row items-center justify-between bg-white">
@@ -24,7 +25,7 @@ const CartPage = () => {
 
             <View className="flex flex-col items-center justify-center w-1/3">
               <Text className="text-2xl font-bold">Cart</Text>
-              <Text className="text-xl text-[#499A98] font-medium">Item Name</Text>
+              <Text className="text-xl text-[#499A98] font-medium">{items[0].restaurantName}</Text>
             </View>
 
             <View className="w-1/3 flex flex-row justify-end">
@@ -37,8 +38,10 @@ const CartPage = () => {
           </View>
 
           <View className="p-4 w-full flex flex-row items-center justify-between bg-white">
-            <Text className="text-lg">Deliver in 50-75 min</Text>
-
+            <View className="flex flex-row items-center gap-x-4">
+              <Image src={items[0]?.restaurantImageUrl} className="w-10 h-10 rounded-full" />
+              <Text className="text-lg">Deliver in 50-75 min</Text>
+            </View>
             <TouchableOpacity>
               <Text className="text-lg font-bold tracking-wider text-[#00CCBC]">Change</Text>
             </TouchableOpacity>
@@ -47,13 +50,21 @@ const CartPage = () => {
           <View className="w-full flex flex-col bg-white">
             {items?.length > 0
               ? items.map((item, index) => {
+                  const itemCount = filterItemCountById(items, item?._id)
                   return (
                     <View
+                      key={item?._id + index}
                       className={`flex flex-row gap-x-4 justify-between w-full items-center ${
-                        index !== items.length - 1 ? 'border-b border-b-gray-100' : ''
+                        index !== items?.length - 1 ? 'border-b border-b-gray-100' : ''
                       } p-4`}
                     >
-                      <Text className="text-lg">{item.name}</Text>
+                      <View className="flex flex-row items-center gap-x-4">
+                        <Text className="text-2xl font-bold tracking-wider text-[#00CCBC]">
+                          {itemCount}x
+                        </Text>
+                        <Image src={item?.imageUrl} className="w-12 h-12 rounded-full" />
+                        <Text className="text-lg">{item.name}</Text>
+                      </View>
 
                       <View className="flex flex-col items-end">
                         <Text className="text-lg font-bold tracking-wider">£{item.price}</Text>
@@ -93,7 +104,7 @@ const CartPage = () => {
           </View>
         </View>
       </View>
-    </View>
+    </ScrollView>
   )
 }
 

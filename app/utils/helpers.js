@@ -10,3 +10,14 @@ export const generateUUID = () => {
     return v.toString(16)
   })
 }
+
+export const filterItemCountById = (items, id) => {
+  if (items?.length > 0) {
+    const itemsById = items.filter((x) => x._id === id)
+    const itemLength = itemsById?.length
+
+    return itemLength
+  }
+
+  return 0
+}
