@@ -17,6 +17,8 @@ import RestaurantNotFound from './not-found'
 import BackButton from '../../atoms/BackButton'
 import HaveFoodAllergy from '../../molecules/HaveFoodAllergy'
 import DishItem from '../../molecules/Cards/DishItem'
+import {generateUUID} from '../../../utils/helpers'
+import EmptySpace from '../../molecules/EmptySpace'
 
 const RestaurantPage = ({route}) => {
   const {_id} = route.params
@@ -75,10 +77,10 @@ const RestaurantPage = ({route}) => {
       contentContainerStyle={{paddingBottom: Platform.OS === 'android' ? 50 : 30}}
       data={restaurantData?.dishes}
       initialNumToRender={4}
-      renderItem={({item, index}) => {
-        return <DishItem key={item?._id || `dish-${index + 1}`} {...item} />
+      renderItem={({item}) => {
+        return <DishItem {...item} />
       }}
-      keyExtractor={({item}) => item?._id}
+      keyExtractor={({item}) => (item?._id ? item?._id : generateUUID())}
       getItemCount={getItemCount}
       getItem={getItem}
       ListHeaderComponent={
@@ -123,6 +125,7 @@ const RestaurantPage = ({route}) => {
           </View>
         </View>
       }
+      ListFooterComponent={<EmptySpace />}
     />
   )
 }

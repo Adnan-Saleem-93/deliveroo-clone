@@ -27,11 +27,11 @@ const DishItem = ({_id, imageUrl, price, name, short_description}) => {
   const isItemNotAddedToCart = useMemo(() => itemCount === 0, [itemCount])
 
   return (
-    <TouchableOpacity
-      className="flex flex-col justify-between gap-y-6 border border-gray-200 w-full p-4 bg-white"
-      onPress={() => setIsPressed(!isPressed)}
-    >
-      <View className="flex flex-col justify-between gap-y-4 w-full">
+    <View className="flex flex-col justify-between gap-y-4 border border-gray-200 w-full p-4 bg-white">
+      <TouchableOpacity
+        className="flex flex-col justify-between gap-y-4 w-full"
+        onPress={() => setIsPressed(!isPressed)}
+      >
         <View className="flex flex-row justify-between items-center gap-x-6 w-full">
           <View className="flex flex-col justify-center gap-y-3 w-1/2">
             <Text className="text-2xl text-[#353535] font-bold">{name}</Text>
@@ -44,36 +44,37 @@ const DishItem = ({_id, imageUrl, price, name, short_description}) => {
             <Image progressiveRenderingEnabled src={imageUrl} className="w-28 h-28 rounded-md" />
           </View>
         </View>
+      </TouchableOpacity>
+      {isPressed && (
+        <View className="w-full">
+          <View className="flex flex-row gap-x-3 items-center w-full">
+            {/* REMOVE Item from Cart Button */}
+            <TouchableOpacity
+              className={`${
+                isItemNotAddedToCart ? 'opacity-50' : ''
+              } w-8 h-8 flex items-center justify-center rounded-full bg-[#00CCBC]`}
+              onPress={() => {
+                isItemNotAddedToCart ? null : removeItem()
+              }}
+              disabled={isItemNotAddedToCart}
+            >
+              <Text className="text-2xl font-extrabold text-white">-</Text>
+            </TouchableOpacity>
 
-        {isPressed && (
-          <View className="w-full">
-            <View className="flex flex-row gap-x-3 items-center w-full">
-              {/* REMOVE Item from Cart Button */}
-              <TouchableOpacity
-                className={`${
-                  isItemNotAddedToCart ? 'opacity-50' : ''
-                } w-8 h-8 flex items-center justify-center rounded-full bg-[#00CCBC]`}
-                onPress={() => (isItemNotAddedToCart ? null : removeItem())}
-                disabled={isItemNotAddedToCart}
-              >
-                <Text className="text-2xl font-extrabold text-white">-</Text>
-              </TouchableOpacity>
+            {/* Item Count */}
+            <Text className="text-xl font-medium">{itemCount}</Text>
 
-              {/* Item Count */}
-              <Text className="text-xl font-medium">{itemCount}</Text>
-
-              {/* ADD Item to Cart Button */}
-              <TouchableOpacity
-                className="w-8 h-8 flex items-center justify-center rounded-full bg-[#00CCBC]"
-                onPress={addItem}
-              >
-                <Text className="text-xl font-extrabold text-white">+</Text>
-              </TouchableOpacity>
-            </View>
+            {/* ADD Item to Cart Button */}
+            <TouchableOpacity
+              className="w-8 h-8 flex items-center justify-center rounded-full bg-[#00CCBC]"
+              onPress={addItem}
+            >
+              <Text className="text-xl font-extrabold text-white">+</Text>
+            </TouchableOpacity>
           </View>
-        )}
-      </View>
-    </TouchableOpacity>
+        </View>
+      )}
+    </View>
   )
 }
 
