@@ -2,24 +2,27 @@ import React, {useEffect, useMemo, useState} from 'react'
 import {Image, Text, TouchableOpacity, View} from 'react-native'
 import {useCartStore} from '../../../store/cart'
 import RoundButton from '../../atoms/RoundButton'
+import {filterItemCountById} from '../../../utils/helpers'
 
-const DishItem = ({_id, imageUrl, price, name, short_description}) => {
+const DishItem = ({
+  _id,
+  imageUrl,
+  price,
+  name,
+  short_description,
+  restaurantName,
+  restaurantImageUrl
+}) => {
   const [isPressed, setIsPressed] = useState(false)
   const {items, addItemToCart, removeItemFromCart} = useCartStore()
   const [itemCount, setItemCount] = useState(0)
 
   useEffect(() => {
-    const filterItemCountById = () => {
-      const itemsById = items.filter((x) => x._id === _id)
-      const itemLength = itemsById?.length
-
-      setItemCount(itemLength)
-    }
-    filterItemCountById()
+    setItemCount(filterItemCountById(items, _id))
   }, [items])
 
   const addItem = () => {
-    addItemToCart({_id, price, name, imageUrl})
+    addItemToCart({_id, price, name, imageUrl, restaurantImageUrl, restaurantName})
   }
   const removeItem = () => {
     removeItemFromCart(_id)

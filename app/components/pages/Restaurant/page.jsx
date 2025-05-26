@@ -78,7 +78,13 @@ const RestaurantPage = ({route}) => {
       data={restaurantData?.dishes}
       initialNumToRender={4}
       renderItem={({item}) => {
-        return <DishItem {...item} />
+        return (
+          <DishItem
+            {...item}
+            restaurantImageUrl={restaurantData?.imageUrl}
+            restaurantName={restaurantData?.name}
+          />
+        )
       }}
       keyExtractor={({item}) => (item?._id ? item?._id : generateUUID())}
       getItemCount={getItemCount}
