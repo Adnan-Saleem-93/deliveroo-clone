@@ -26,13 +26,13 @@ const CartPage = () => {
         <View
           className={`px-4 ${
             IS_ANDROID ? 'py-4' : 'py-6'
-          } w-full flex flex-row items-center justify-between bg-white`}
+          } w-full flex flex-row items-start justify-between bg-white`}
         >
-          <View className="w-1/3" />
-
-          <View className="flex flex-col items-center justify-center w-1/3">
-            <Text className="text-2xl font-bold">Cart</Text>
-            <Text className="text-xl text-[#499A98] font-medium">{restaurant?.name}</Text>
+          <View className="flex items-end justify-center w-2/3">
+            <View className="flex items-center justify-center">
+              <Text className="text-2xl font-bold">Cart</Text>
+              <Text className="text-xl text-[#499A98] font-medium">{restaurant?.name}</Text>
+            </View>
           </View>
 
           <View className="w-1/3 flex flex-row justify-end">
@@ -90,7 +90,7 @@ const CartPage = () => {
         </View>
       </View>
 
-      <View className="flex flex-col gap-y-4 bg-white pb-12 p-6">
+      <View className={`flex flex-col gap-y-4 bg-white ${IS_ANDROID ? 'pb-4' : 'pb-12'} p-6`}>
         <View className="w-full flex flex-col bg-white gap-y-4">
           <View className="flex flex-row w-full justify-between items-center">
             <Text className="text-lg font-bold tracking-wider text-[#499A98]">Subtotal</Text>
