@@ -4,7 +4,7 @@ import {useCartStore} from '../../store/cart'
 import {useNavigation, useRoute} from '@react-navigation/native'
 
 const CartCard = () => {
-  const {items, totalPrice, showCartCard} = useCartStore()
+  const {items, totalPrice, showCartCard, totalCount} = useCartStore()
   const navigation = useNavigation()
 
   return (
@@ -16,7 +16,7 @@ const CartCard = () => {
       >
         <View className="flex flex-row items-center justify-between w-full mx-auto p-4 shadow-md bg-[#499A98] rounded-lg">
           <Text className="text-xl text-white font-bold bg-[#347B78] py-2 px-4 rounded-lg">
-            {items?.length}
+            {totalCount}
           </Text>
           <Text className="text-2xl text-white font-bold">View Basket</Text>
           <Text className="text-2xl text-white font-bold">£{totalPrice}</Text>

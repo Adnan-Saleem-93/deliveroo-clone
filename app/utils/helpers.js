@@ -13,11 +13,10 @@ export const generateUUID = () => {
 
 export const filterItemCountById = (items, id) => {
   if (items?.length > 0) {
-    const itemsById = items.filter((x) => x._id === id)
-    const itemLength = itemsById?.length
+    const itemById = items.find((x) => x._id === id)
+    const itemLength = itemById ? itemById?.cartCount : 0
 
     return itemLength
   }
-
   return 0
 }

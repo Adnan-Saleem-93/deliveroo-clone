@@ -4,17 +4,30 @@ export const useCartStore = create((set) => ({
   items: [],
   restaurant: null,
   totalPrice: 0,
+  totalCount: 0,
   showCartCard: true,
   wasCartCleared: false,
   addItemToCart: (restaurant, newItem) =>
     set((state) => {
       const total = state.totalPrice + newItem.price
+      const updatedItems = [...state.items]
+      // check if the same item already exists in cart,
+      const matchedItemIndex = updatedItems.findIndex((x) => x._id === newItem._id)
+
+      if (matchedItemIndex > -1) {
+        const updateItemObj = updatedItems[matchedItemIndex]
+        updateItemObj.cartCount += 1
+
+        updatedItems[matchedItemIndex] = updateItemObj
+      } else {
+        updatedItems.push({...newItem, cartCount: 1})
+      }
 
       return {
-        // ...state,
         restaurant,
-        items: [...state.items, newItem],
-        totalPrice: Number(total?.toFixed(2))
+        items: updatedItems,
+        totalPrice: Number(total?.toFixed(2)),
+        totalCount: state.totalCount + 1
       }
     }),
   removeItemFromCart: (id) =>
@@ -25,10 +38,26 @@ export const useCartStore = create((set) => ({
       if (matchedItemIndex > -1) {
         const item = _items[matchedItemIndex]
         const total = state.totalPrice - item?.price || 0
-        _items.splice(matchedItemIndex, 1)
-        return {...state, items: _items, totalPrice: Number(total?.toFixed(2))}
+
+        if (item.cartCount === 1) {
+          _items.splice(matchedItemIndex, 1)
+          return {
+            items: _items,
+            restaurant: null,
+            totalPrice: Number(total?.toFixed(2)),
+            totalCount: state.totalCount - 1
+          }
+        } else {
+          item.cartCount -= 1
+          _items[matchedItemIndex] = item
+          return {
+            items: _items,
+            totalPrice: Number(total?.toFixed(2)),
+            totalCount: state.totalCount - 1
+          }
+        }
       }
-      return {...state, items: [...state.items]}
+      return {items: [...state.items]}
     }),
   clearCart: () =>
     set(() => {
