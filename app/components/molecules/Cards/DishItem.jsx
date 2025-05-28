@@ -1,8 +1,10 @@
 import React, {useEffect, useMemo, useState} from 'react'
-import {Image, Text, TouchableOpacity, View} from 'react-native'
+import {Image, Modal, Text, TouchableOpacity, View} from 'react-native'
 import {useCartStore} from '../../../store/cart'
 import RoundButton from '../../atoms/RoundButton'
 import {filterItemCountById} from '../../../utils/helpers'
+import {useModalStore} from '../../../store/modal'
+import ClearCart from '../ModalContents/ClearCart'
 
 const DishItem = ({
   _id,
@@ -14,16 +16,48 @@ const DishItem = ({
   restaurantImageUrl
 }) => {
   const [isPressed, setIsPressed] = useState(false)
-  const {items, addItemToCart, removeItemFromCart} = useCartStore()
+  const {
+    items,
+    restaurant,
+    addItemToCart,
+    removeItemFromCart,
+    wasCartCleared,
+    resetWasCartClearedStatus
+  } = useCartStore()
   const [itemCount, setItemCount] = useState(0)
+  const {setModalContent, setShowModal} = useModalStore()
+  const [itemToBeAdded, setItemToBeAdded] = useState(null)
 
   useEffect(() => {
     setItemCount(filterItemCountById(items, _id))
   }, [items])
 
   const addItem = () => {
-    addItemToCart({_id, price, name, imageUrl, restaurantImageUrl, restaurantName})
+    // check if the dish being added is from a different restaurant
+    const obj = {
+      restaurant: {name: restaurantName, imageUrl: restaurantImageUrl}, // restaurant details
+      dish: {_id, price, name, imageUrl}
+    } // selected dish details
+    if (restaurant && restaurant?.name !== restaurantName) {
+      // show modal to confirm removal of previously added dishes from the other restaurant
+      setShowModal(true)
+      setModalContent(<ClearCart />)
+      setItemToBeAdded(obj)
+    } else {
+      addItemToCart({...obj.restaurant}, {...obj.dish})
+    }
   }
+
+  useEffect(() => {
+    if (wasCartCleared && itemToBeAdded) {
+      addItemToCart({...itemToBeAdded.restaurant}, {...itemToBeAdded.dish})
+
+      setTimeout(() => {
+        resetWasCartClearedStatus()
+      }, 1000)
+    }
+  }, [wasCartCleared])
+
   const removeItem = () => {
     removeItemFromCart(_id)
   }

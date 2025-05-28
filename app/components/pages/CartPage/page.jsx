@@ -7,7 +7,7 @@ import {filterItemCountById} from '../../../utils/helpers'
 import {useNavigation} from '@react-navigation/native'
 
 const CartPage = () => {
-  const {items, setShowCartCard, totalPrice} = useCartStore()
+  const {items, restaurant, setShowCartCard, totalPrice} = useCartStore()
   const navigation = useNavigation()
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const CartPage = () => {
 
             <View className="flex flex-col items-center justify-center w-1/3">
               <Text className="text-2xl font-bold">Cart</Text>
-              <Text className="text-xl text-[#499A98] font-medium">{items[0].restaurantName}</Text>
+              <Text className="text-xl text-[#499A98] font-medium">{restaurant?.name}</Text>
             </View>
 
             <View className="w-1/3 flex flex-row justify-end">
@@ -44,7 +44,7 @@ const CartPage = () => {
 
           <View className="p-4 w-full flex flex-row items-center justify-between bg-white">
             <View className="flex flex-row items-center gap-x-4">
-              <Image src={items[0]?.restaurantImageUrl} className="w-10 h-10 rounded-full" />
+              <Image src={restaurant?.imageUrl} className="w-10 h-10 rounded-full" />
               <Text className="text-lg">Deliver in 50-75 min</Text>
             </View>
             <TouchableOpacity>
