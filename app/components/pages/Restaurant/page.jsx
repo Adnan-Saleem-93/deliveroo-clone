@@ -67,7 +67,7 @@ const RestaurantPage = ({route}) => {
 
   return isFetchingData ? (
     <ScrollView
-      contentContainerStyle={{paddingBottom: Platform.OS === 'android' ? 50 : 40}}
+      contentContainerStyle={{paddingBottom: Platform.OS === 'android' ? 20 : 40}}
       className="bg-slate-100"
     >
       <RestaurantPageLoading />
@@ -75,7 +75,7 @@ const RestaurantPage = ({route}) => {
   ) : (
     <VirtualizedList
       className="bg-slate-100"
-      contentContainerStyle={{paddingBottom: Platform.OS === 'android' ? 50 : 30}}
+      contentContainerStyle={{paddingBottom: Platform.OS === 'android' ? 20 : 30}}
       data={restaurantData?.dishes}
       initialNumToRender={4}
       renderItem={({item}) => {
