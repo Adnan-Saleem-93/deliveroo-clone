@@ -6,7 +6,7 @@ import {StatusBar} from 'expo-status-bar'
 import ProfilePage from './components/pages/ProfilePage'
 import RestaurantPage from './components/pages/Restaurant/page'
 import CartCard from './components/organisms/CartCard'
-import CartPage from './components/pages/CartPage/page'
+import CartPage from './components/pages/Cart/page'
 import ModalComponent from './components/organisms/Modal'
 import DarkenedBackground from './components/organisms/DarkenedBackground'
 
