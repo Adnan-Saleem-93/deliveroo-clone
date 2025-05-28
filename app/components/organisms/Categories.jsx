@@ -4,7 +4,7 @@ import CategoryCard from '../molecules/Cards/CategoryCard'
 import {useState} from 'react'
 import {useEffect} from 'react'
 
-import SkeletonCard from '../molecules/Cards/SkeletonCard'
+import Skeleton from '../atoms/Skeleton'
 import {getCategories} from '../../utils/api'
 
 const Categories = () => {
@@ -34,7 +34,7 @@ const Categories = () => {
       <View className="flex-row items-center gap-x-3">
         {isLoading
           ? Array.from({length: 5}).map((_, index) => {
-              return <SkeletonCard key={index} />
+              return <Skeleton key={index} />
             })
           : categories?.length > 0 &&
             categories?.map((category) => {

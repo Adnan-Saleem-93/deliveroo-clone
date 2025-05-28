@@ -1,7 +1,7 @@
 import './global.css'
 import {NavigationContainer} from '@react-navigation/native'
 import {createStackNavigator} from '@react-navigation/stack'
-import HomePage from './components/pages/HomePage'
+import HomePage from './components/pages/Home/page'
 import {StatusBar} from 'expo-status-bar'
 import ProfilePage from './components/pages/ProfilePage'
 import RestaurantPage from './components/pages/Restaurant/page'
