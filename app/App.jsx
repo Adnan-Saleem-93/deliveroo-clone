@@ -8,13 +8,11 @@ import RestaurantPage from './components/pages/Restaurant/page'
 import CartCard from './components/organisms/CartCard'
 import CartPage from './components/pages/CartPage/page'
 import ModalComponent from './components/organisms/Modal'
-import {useModalStore} from './store/modal'
-import {View} from 'react-native'
+import DarkenedBackground from './components/organisms/DarkenedBackground'
 
 const Stack = createStackNavigator()
 
 export default function App() {
-  const {showModal} = useModalStore()
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -30,7 +28,7 @@ export default function App() {
       <StatusBar style="auto" />
       <CartCard />
       <ModalComponent />
-      {showModal && <View className={'absolute top-0 w-screen h-screen bg-black/70'} />}
+      <DarkenedBackground />
     </NavigationContainer>
   )
 }
