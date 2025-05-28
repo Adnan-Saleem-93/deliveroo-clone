@@ -2,14 +2,17 @@ import {View, Text, TouchableOpacity} from 'react-native'
 import React from 'react'
 import {useCartStore} from '../../store/cart'
 import {useNavigation, useRoute} from '@react-navigation/native'
+import {useModalStore} from '../../store/modal'
 
 const CartCard = () => {
   const {items, totalPrice, showCartCard, totalCount} = useCartStore()
+  const {showModal} = useModalStore()
   const navigation = useNavigation()
 
   return (
     showCartCard &&
-    items?.length > 0 && (
+    items?.length > 0 &&
+    !showModal && (
       <TouchableOpacity
         className="absolute bottom-12 w-full px-4"
         onPress={() => navigation.navigate('Cart')}

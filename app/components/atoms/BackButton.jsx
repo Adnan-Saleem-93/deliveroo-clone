@@ -7,7 +7,7 @@ const BackButton = ({classes}) => {
   return (
     <View className={`${classes}`}>
       <TouchableOpacity
-        className={`bg-slate-50 rounded-full p-1 shadow-slate-600 shadow-lg flex items-center justify-center w-12 h-12`}
+        className={`bg-slate-50 rounded-full p-1 shadow-slate-600 shadow-xl flex items-center justify-center w-12 h-12`}
         onPress={() =>
           navigation?.canGoBack ? navigation?.goBack() : navigation?.navigate('Home')
         }

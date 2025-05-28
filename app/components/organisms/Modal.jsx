@@ -1,8 +1,9 @@
-import {View, Text, Modal, Pressable, StyleSheet} from 'react-native'
+import {View, Text, Modal, Pressable, StyleSheet, StatusBar} from 'react-native'
 import React from 'react'
 import {useModalStore} from '../../store/modal'
 import {XMarkIcon} from 'react-native-heroicons/outline'
 import RoundButton from '../atoms/RoundButton'
+import {IS_ANDROID} from '../../utils/constants'
 
 const ModalComponent = ({children}) => {
   const {showModal, setShowModal, modalContent} = useModalStore()
@@ -30,7 +31,6 @@ const ModalComponent = ({children}) => {
           </View>
         </View>
       </Modal>
-      {showModal && <View className="absolute w-screen h-screen bg-black/70"></View>}
     </>
   )
 }

@@ -1,11 +1,11 @@
-import {View, Text, TouchableOpacity, Image, ScrollView, StyleSheet} from 'react-native'
+import {View, Text, TouchableOpacity, Image, ScrollView, StyleSheet, StatusBar} from 'react-native'
 import React, {useEffect} from 'react'
 import {useCartStore} from '../../../store/cart'
 import RoundButton from '../../atoms/RoundButton'
 import {XMarkIcon} from 'react-native-heroicons/outline'
-import {filterItemCountById} from '../../../utils/helpers'
 import {useNavigation} from '@react-navigation/native'
 import PrimaryButton from '../../atoms/Buttons/PrimaryButton'
+import {IS_ANDROID} from '../../../utils/constants'
 
 const CartPage = () => {
   const {items, restaurant, setShowCartCard, totalPrice} = useCartStore()
@@ -21,8 +21,13 @@ const CartPage = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.ScrollViewStyles}>
-      <View className="flex flex-col gap-y-8">
-        <View className="px-4 py-6 w-full flex flex-row items-center justify-between bg-white">
+      {IS_ANDROID && <StatusBar backgroundColor="#fff" />}
+      <View className="flex flex-col gap-y-4">
+        <View
+          className={`px-4 ${
+            IS_ANDROID ? 'py-4' : 'py-6'
+          } w-full flex flex-row items-center justify-between bg-white`}
+        >
           <View className="w-1/3" />
 
           <View className="flex flex-col items-center justify-center w-1/3">
@@ -85,7 +90,7 @@ const CartPage = () => {
         </View>
       </View>
 
-      <View className="flex flex-col gap-y-8 bg-white pb-12 p-6">
+      <View className="flex flex-col gap-y-4 bg-white pb-12 p-6">
         <View className="w-full flex flex-col bg-white gap-y-4">
           <View className="flex flex-row w-full justify-between items-center">
             <Text className="text-lg font-bold tracking-wider text-[#499A98]">Subtotal</Text>
@@ -115,7 +120,8 @@ const styles = StyleSheet.create({
     width: '100%',
     display: 'flex',
     justifyContent: 'space-between',
-    rowGap: '2rem'
+    rowGap: '1rem',
+    paddingTop: IS_ANDROID ? StatusBar.currentHeight : 0
   }
 })
 

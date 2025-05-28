@@ -73,71 +73,67 @@ const RestaurantPage = ({route}) => {
       <RestaurantPageLoading />
     </ScrollView>
   ) : (
-    <>
-      <VirtualizedList
-        className="bg-slate-100"
-        contentContainerStyle={{paddingBottom: Platform.OS === 'android' ? 50 : 30}}
-        data={restaurantData?.dishes}
-        initialNumToRender={4}
-        renderItem={({item}) => {
-          return (
-            <DishItem
-              {...item}
-              restaurantImageUrl={restaurantData?.imageUrl}
-              restaurantName={restaurantData?.name}
+    <VirtualizedList
+      className="bg-slate-100"
+      contentContainerStyle={{paddingBottom: Platform.OS === 'android' ? 50 : 30}}
+      data={restaurantData?.dishes}
+      initialNumToRender={4}
+      renderItem={({item}) => {
+        return (
+          <DishItem
+            {...item}
+            restaurantImageUrl={restaurantData?.imageUrl}
+            restaurantName={restaurantData?.name}
+          />
+        )
+      }}
+      keyExtractor={({item}) => (item?._id ? item?._id : generateUUID())}
+      getItemCount={getItemCount}
+      getItem={getItem}
+      ListHeaderComponent={
+        <View>
+          <BackButton classes="absolute top-16 left-4 z-50" />
+          <View className="w-full">
+            <Image
+              progressiveRenderingEnabled
+              src={restaurantData?.imageUrl}
+              className="w-full h-72"
             />
-          )
-        }}
-        keyExtractor={({item}) => (item?._id ? item?._id : generateUUID())}
-        getItemCount={getItemCount}
-        getItem={getItem}
-        ListHeaderComponent={
-          <View>
-            <BackButton classes="absolute top-16 left-4 z-50" />
-            <View className="w-full">
-              <Image
-                progressiveRenderingEnabled
-                src={restaurantData?.imageUrl}
-                className="w-full h-72"
-              />
 
-              <View className="px-4 py-8 bg-white flex flex-col gap-y-4 w-full">
-                <Text className="text-3xl font-bold">{restaurantData?.name}</Text>
-                <View className="flex flex-row items-center gap-x-3 overflow-hidden">
-                  <View className="flex flex-row items-center">
-                    <StarIconSolid size={24} opacity={0.7} color="#77BD28" />
-                    <Text className="text-[#88AC5B] text-xl font-medium">
-                      {restaurantData?.rating}
-                    </Text>
-                  </View>
-                  <View className="h-1.5 w-1.5 bg-[#9A9A9A] rounded-full" />
-                  <Text className="text-[#9A9A9A] text-xl font-medium">
-                    {restaurantData?.category?.title}
-                  </Text>
-                  <View className="h-1.5 w-1.5 bg-[#9A9A9A] rounded-full" />
-                  <Text className="text-[#9A9A9A] text-xl font-medium line-clamp-1">
-                    {restaurantData?.address}
+            <View className="px-4 py-8 bg-white flex flex-col gap-y-4 w-full">
+              <Text className="text-3xl font-bold">{restaurantData?.name}</Text>
+              <View className="flex flex-row items-center gap-x-3 overflow-hidden">
+                <View className="flex flex-row items-center">
+                  <StarIconSolid size={24} opacity={0.7} color="#77BD28" />
+                  <Text className="text-[#88AC5B] text-xl font-medium">
+                    {restaurantData?.rating}
                   </Text>
                 </View>
-
-                <Text className="text-xl text-[#9A9A9A] font-semibold line-clamp-2">
-                  {restaurantData?.short_description}
+                <View className="h-1.5 w-1.5 bg-[#9A9A9A] rounded-full" />
+                <Text className="text-[#9A9A9A] text-xl font-medium">
+                  {restaurantData?.category?.title}
+                </Text>
+                <View className="h-1.5 w-1.5 bg-[#9A9A9A] rounded-full" />
+                <Text className="text-[#9A9A9A] text-xl font-medium line-clamp-1">
+                  {restaurantData?.address}
                 </Text>
               </View>
 
-              <HaveFoodAllergy />
+              <Text className="text-xl text-[#9A9A9A] font-semibold line-clamp-2">
+                {restaurantData?.short_description}
+              </Text>
+            </View>
 
-              <View className="p-4 pt-10">
-                <Text className="text-2xl text-[#353535] font-bold">Menu</Text>
-              </View>
+            <HaveFoodAllergy />
+
+            <View className="p-4 pt-10">
+              <Text className="text-2xl text-[#353535] font-bold">Menu</Text>
             </View>
           </View>
-        }
-        ListFooterComponent={<EmptySpace />}
-      />
-
-      <ModalComponent />
-    </>
+        </View>
+      }
+      ListFooterComponent={<EmptySpace />}
+    />
   )
 }
 
