@@ -61,7 +61,7 @@ export const useCartStore = create((set) => ({
     }),
   clearCart: () =>
     set(() => {
-      return {items: [], restaurant: null, totalPrice: 0, wasCartCleared: true}
+      return {items: [], restaurant: null, totalPrice: 0, wasCartCleared: true, totalCount: 0}
     }),
 
   setShowCartCard: (flag) =>
