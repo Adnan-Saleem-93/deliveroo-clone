@@ -3,7 +3,7 @@ import ClearCart from '../components/molecules/ModalContents/ClearCart'
 
 export const useModalStore = create((set) => ({
   showModal: false,
-  modalContent: <ClearCart />,
+  modalContent: null,
   setShowModal: (showModal) =>
     set((state) => {
       return {
