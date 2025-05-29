@@ -8,8 +8,12 @@ import PrimaryButton from '../../atoms/Buttons/PrimaryButton'
 import {IS_ANDROID} from '../../../utils/constants'
 
 const CartPage = () => {
-  const {items, restaurant, setShowCartCard, totalPrice} = useCartStore()
+  const {items, restaurant, setShowCartCard, totalPrice, totalCount, removeItemFromCart} =
+    useCartStore()
   const navigation = useNavigation()
+
+  const closeCartModalPage = () =>
+    navigation.canGoBack ? navigation.goBack() : navigation.navigate('Home')
 
   useEffect(() => {
     setShowCartCard(false)
@@ -18,6 +22,10 @@ const CartPage = () => {
       setShowCartCard(true)
     }
   }, [])
+
+  useEffect(() => {
+    if (!totalCount) closeCartModalPage()
+  }, [totalCount])
 
   return (
     <ScrollView contentContainerStyle={styles.ScrollViewStyles}>
@@ -40,9 +48,7 @@ const CartPage = () => {
               buttonText={<XMarkIcon strokeWidth={5} color="#fff" />}
               classes="!w-12 !h-12"
               textClasses="!text-4xl tracking-widest align-middle text-center"
-              onPressAction={() =>
-                navigation.canGoBack ? navigation.goBack() : navigation.navigate('Home')
-              }
+              onPressAction={() => closeCartModalPage()}
             />
           </View>
         </View>
@@ -52,7 +58,7 @@ const CartPage = () => {
             <Image src={restaurant?.imageUrl} className="w-10 h-10 rounded-full" />
             <Text className="text-lg">Deliver in 50-75 min</Text>
           </View>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => closeCartModalPage()}>
             <Text className="text-lg font-bold tracking-wider text-[#00CCBC]">Change</Text>
           </TouchableOpacity>
         </View>
@@ -77,7 +83,7 @@ const CartPage = () => {
 
                     <View className="flex flex-col items-end">
                       <Text className="text-lg font-bold tracking-wider">£{item.price}</Text>
-                      <TouchableOpacity>
+                      <TouchableOpacity onPress={() => removeItemFromCart(item._id)}>
                         <Text className="text-lg font-bold tracking-wider text-[#00CCBC]">
                           Remove
                         </Text>
