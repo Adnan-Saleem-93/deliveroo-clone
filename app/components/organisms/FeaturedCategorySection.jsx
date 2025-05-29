@@ -7,18 +7,14 @@ import Skeleton from '../atoms/Skeleton'
 
 const FeaturedCategoryItem = ({_id, name, short_description}) => {
   const [featureItem, setFeatureItem] = useState([])
-  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     ;(async () => {
-      setIsLoading(true)
       try {
         const response = await getFeaturedCategoryById(_id)
         setFeatureItem(response)
       } catch (error) {
         console.log(error)
-      } finally {
-        setIsLoading(false)
       }
     })()
 
@@ -28,20 +24,14 @@ const FeaturedCategoryItem = ({_id, name, short_description}) => {
   }, [])
 
   return (
-    <View className="flex-col gap-y-3">
+    <View className="flex-col gap-y-4">
       <SectionHeader title={name} subTitle={short_description} />
+
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         <View className="flex-row gap-x-3">
-          {isLoading
-            ? Array.from({length: 4}).map((_, index) => (
-                <Skeleton
-                  key={`featured-restaurant-loader-${index + 1}`}
-                  width="w-64 h-[16.75rem]"
-                />
-              ))
-            : featureItem?.restaurants?.map((restaurant) => {
-                return <FeaturedItemCard key={restaurant?._id} {...restaurant} />
-              })}
+          {featureItem?.restaurants?.map((restaurant) => {
+            return <FeaturedItemCard key={restaurant?._id} {...restaurant} />
+          })}
         </View>
       </ScrollView>
     </View>
