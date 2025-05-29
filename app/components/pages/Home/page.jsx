@@ -6,23 +6,28 @@ import Categories from '../../organisms/Categories'
 import FeaturedCategorySection from '../../organisms/FeaturedCategorySection'
 import {getFeaturedCategories} from '../../../utils/api'
 import HomeTemplate from '../../templates/HomeTemplate'
+import LoadingFeaturedRestaurantCategories from './loading'
 
 const HomePage = () => {
   const navigation = useNavigation()
-  const [featuredCategories, setFeaturedCategories] = useState([])
+  const [featuredRestaurantCategories, setFeaturedRestaurantCategories] = useState([])
+  const [isFetchingCategories, setIsFetchingRestaurantCategories] = useState(false)
 
   useEffect(() => {
     ;(async () => {
       try {
+        setIsFetchingRestaurantCategories(true)
         const response = await getFeaturedCategories()
-        setFeaturedCategories(response)
+        setFeaturedRestaurantCategories(response)
       } catch (error) {
         console.log(error)
+      } finally {
+        setIsFetchingRestaurantCategories(false)
       }
     })()
 
     return () => {
-      setFeaturedCategories([])
+      setFeaturedRestaurantCategories([])
     }
   }, [])
 
@@ -40,11 +45,13 @@ const HomePage = () => {
         <View className="flex-col gap-y-5">
           <Categories />
 
-          {featuredCategories.length > 0
-            ? featuredCategories.map((category, idx) => {
-                return <FeaturedCategorySection key={category?._id || idx} {...category} />
-              })
-            : null}
+          {isFetchingCategories ? (
+            <LoadingFeaturedRestaurantCategories />
+          ) : featuredRestaurantCategories.length > 0 ? (
+            featuredRestaurantCategories.map((category, idx) => {
+              return <FeaturedCategorySection key={category?._id || idx} {...category} />
+            })
+          ) : null}
         </View>
       </ScrollView>
     </HomeTemplate>
