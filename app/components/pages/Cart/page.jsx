@@ -28,7 +28,7 @@ const CartPage = () => {
   }, [totalCount])
 
   return (
-    <ScrollView contentContainerStyle={styles.ScrollViewStyles}>
+    <>
       {IS_ANDROID && <StatusBar backgroundColor="#fff" />}
       <View className="flex flex-col gap-y-4">
         <View
@@ -62,39 +62,39 @@ const CartPage = () => {
             <Text className="text-lg font-bold tracking-wider text-[#00CCBC]">Change</Text>
           </TouchableOpacity>
         </View>
-
-        <View className="w-full flex flex-col bg-white">
-          {items?.length > 0
-            ? items.map((item, index) => {
-                return (
-                  <View
-                    key={item?._id + index}
-                    className={`flex flex-row gap-x-4 justify-between w-full items-center ${
-                      index !== items?.length - 1 ? 'border-b border-b-gray-100' : ''
-                    } p-4`}
-                  >
-                    <View className="flex flex-row items-center gap-x-4">
-                      <Text className="text-2xl font-bold tracking-wider text-[#499A98]">
-                        {item?.cartCount}x
-                      </Text>
-                      <Image src={item?.imageUrl} className="w-12 h-12 rounded-full" />
-                      <Text className="text-lg">{item.name}</Text>
-                    </View>
-
-                    <View className="flex flex-col items-end">
-                      <Text className="text-lg font-bold tracking-wider">£{item.price}</Text>
-                      <TouchableOpacity onPress={() => removeItemFromCart(item._id)}>
-                        <Text className="text-lg font-bold tracking-wider text-[#00CCBC]">
-                          Remove
-                        </Text>
-                      </TouchableOpacity>
-                    </View>
-                  </View>
-                )
-              })
-            : null}
-        </View>
       </View>
+
+      <ScrollView className="my-4">
+        {items?.length > 0
+          ? items.map((item, index) => {
+              return (
+                <View
+                  key={item?._id + index}
+                  className={`flex flex-row gap-x-4 justify-between w-full items-center ${
+                    index !== items?.length - 1 ? 'border-b border-b-gray-100' : ''
+                  } p-3 bg-white`}
+                >
+                  <View className="flex flex-row items-center gap-x-4">
+                    <Text className="text-2xl font-bold tracking-wider text-[#499A98]">
+                      {item?.cartCount}x
+                    </Text>
+                    <Image src={item?.imageUrl} className="w-12 h-12 rounded-full" />
+                    <Text className="text-lg">{item.name}</Text>
+                  </View>
+
+                  <View className="flex flex-col items-end">
+                    <Text className="text-lg font-bold tracking-wider">£{item.price}</Text>
+                    <TouchableOpacity onPress={() => removeItemFromCart(item._id)}>
+                      <Text className="text-lg font-bold tracking-wider text-[#00CCBC]">
+                        Remove
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              )
+            })
+          : null}
+      </ScrollView>
 
       <View className={`flex flex-col gap-y-4 bg-white ${IS_ANDROID ? 'pb-4' : 'pb-12'} p-6`}>
         <View className="w-full flex flex-col bg-white gap-y-4">
@@ -116,18 +116,18 @@ const CartPage = () => {
           <PrimaryButton text="Place Order" />
         </View>
       </View>
-    </ScrollView>
+    </>
   )
 }
 
 const styles = StyleSheet.create({
   ScrollViewStyles: {
-    height: '100%',
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'space-between',
-    rowGap: '1rem',
-    paddingTop: IS_ANDROID ? StatusBar.currentHeight : 0
+    // height: '100%',
+    // width: '100%',
+    // display: 'flex',
+    // justifyContent: 'space-between',
+    // rowGap: '1rem',
+    // paddingTop: IS_ANDROID ? StatusBar.currentHeight : 0
   }
 })
 
