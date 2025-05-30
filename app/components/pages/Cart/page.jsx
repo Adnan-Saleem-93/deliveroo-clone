@@ -115,7 +115,7 @@ const CartPage = () => {
             <Text className="text-2xl font-bold tracking-wider">£{totalPrice + DELIVERY_FEE}</Text>
           </View>
 
-          <PrimaryButton text="Place Order" />
+          <PrimaryButton text="Place Order" onPress={() => navigation.navigate('PreparingOrder')} />
         </View>
       </View>
     </>

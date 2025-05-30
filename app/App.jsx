@@ -9,6 +9,7 @@ import CartCard from './components/organisms/CartCard'
 import CartPage from './components/pages/Cart/page'
 import ModalComponent from './components/organisms/Modal'
 import DarkenedBackground from './components/organisms/DarkenedBackground'
+import PreparingOrderPage from './components/pages/PreparingOrderPage'
 
 const Stack = createStackNavigator()
 
@@ -23,6 +24,11 @@ export default function App() {
           name="Cart"
           component={CartPage}
           options={{presentation: 'modal', headerShown: false}}
+        />
+        <Stack.Screen
+          name="PreparingOrder"
+          component={PreparingOrderPage}
+          options={{presentation: 'card', headerShown: false}}
         />
       </Stack.Navigator>
       <StatusBar style="auto" />
