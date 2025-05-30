@@ -7,6 +7,8 @@ import {useNavigation} from '@react-navigation/native'
 import PrimaryButton from '../../atoms/Buttons/PrimaryButton'
 import {IS_ANDROID} from '../../../utils/constants'
 
+const DELIVERY_FEE = 2.99
+
 const CartPage = () => {
   const {items, restaurant, setShowCartCard, totalPrice, totalCount, removeItemFromCart} =
     useCartStore()
@@ -105,12 +107,12 @@ const CartPage = () => {
 
           <View className="flex flex-row w-full justify-between items-center">
             <Text className="text-lg font-bold tracking-wider text-[#499A98]">Delivery Fee</Text>
-            <Text className="text-lg font-bold tracking-wider text-[#499A98]">£2.99</Text>
+            <Text className="text-lg font-bold tracking-wider text-[#499A98]">£{DELIVERY_FEE}</Text>
           </View>
 
           <View className="flex flex-row w-full justify-between items-center">
             <Text className="text-2xl font-medium tracking-wider">Order Total</Text>
-            <Text className="text-2xl font-bold tracking-wider">£{totalPrice}</Text>
+            <Text className="text-2xl font-bold tracking-wider">£{totalPrice + DELIVERY_FEE}</Text>
           </View>
 
           <PrimaryButton text="Place Order" />
@@ -119,16 +121,5 @@ const CartPage = () => {
     </>
   )
 }
-
-const styles = StyleSheet.create({
-  ScrollViewStyles: {
-    // height: '100%',
-    // width: '100%',
-    // display: 'flex',
-    // justifyContent: 'space-between',
-    // rowGap: '1rem',
-    // paddingTop: IS_ANDROID ? StatusBar.currentHeight : 0
-  }
-})
 
 export default CartPage
