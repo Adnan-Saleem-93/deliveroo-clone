@@ -10,6 +10,7 @@ import CartPage from './components/pages/Cart/page'
 import ModalComponent from './components/organisms/Modal'
 import DarkenedBackground from './components/organisms/DarkenedBackground'
 import PreparingOrderPage from './components/pages/PreparingOrderPage'
+import DeliveryPage from './components/pages/DeliveryPage'
 
 const Stack = createStackNavigator()
 
@@ -28,6 +29,11 @@ export default function App() {
         <Stack.Screen
           name="PreparingOrder"
           component={PreparingOrderPage}
+          options={{presentation: 'card', headerShown: false}}
+        />
+        <Stack.Screen
+          name="Delivery"
+          component={DeliveryPage}
           options={{presentation: 'card', headerShown: false}}
         />
       </Stack.Navigator>

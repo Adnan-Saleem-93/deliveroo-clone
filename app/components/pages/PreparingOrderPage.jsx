@@ -1,9 +1,17 @@
 import {Text, SafeAreaView, Image} from 'react-native'
-import React from 'react'
+import React, {useEffect} from 'react'
 import * as Animatable from 'react-native-animatable'
 import * as Progress from 'react-native-progress'
+import {useNavigation} from '@react-navigation/native'
 
 const PreparingOrderPage = () => {
+  const {navigate} = useNavigation()
+
+  useEffect(() => {
+    setTimeout(() => {
+      navigate('Delivery')
+    }, 4000)
+  }, [])
   return (
     <SafeAreaView className="flex-1 items-center justify-center bg-gray-400/80">
       <Animatable.View
