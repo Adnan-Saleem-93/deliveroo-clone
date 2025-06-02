@@ -1,7 +1,7 @@
 import {View, Text, TouchableOpacity} from 'react-native'
 import React from 'react'
 import {useCartStore} from '../../store/cart'
-import {useNavigation, useRoute} from '@react-navigation/native'
+import {useNavigation} from '@react-navigation/native'
 import {useModalStore} from '../../store/modal'
 
 const CartCard = () => {
@@ -9,6 +9,7 @@ const CartCard = () => {
   const {showModal} = useModalStore()
   const navigation = useNavigation()
 
+  console.log({showCartCard, showModal})
   return (
     showCartCard &&
     items?.length > 0 &&

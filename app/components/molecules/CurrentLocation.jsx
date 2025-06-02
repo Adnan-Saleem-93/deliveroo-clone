@@ -2,11 +2,13 @@ import {Text, TouchableOpacity} from 'react-native'
 import React, {useMemo, useState, useEffect} from 'react'
 import {ChevronDownIcon, ChevronUpIcon} from 'react-native-heroicons/outline'
 import * as Location from 'expo-location'
+import {useUserLocationStore} from '../../store/location'
 
 const CurrentLocation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [address, setAddress] = useState(null)
   const [errorMsg, setErrorMsg] = useState(null)
+  const {setUserLocation} = useUserLocationStore()
 
   useEffect(() => {
     ;(async () => {
@@ -28,6 +30,7 @@ const CurrentLocation = () => {
           if (_address) {
             setAddress(_address)
           }
+          setUserLocation(location.coords.latitude, location.coords.longitude, _address)
         } catch (error) {
           setErrorMsg('Error getting address')
         }
