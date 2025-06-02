@@ -8,9 +8,11 @@ const PreparingOrderPage = () => {
   const {navigate} = useNavigation()
 
   useEffect(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       navigate('Delivery')
     }, 4000)
+
+    return () => clearTimeout(timer)
   }, [])
   return (
     <SafeAreaView className="flex-1 items-center justify-center bg-gray-400/80">

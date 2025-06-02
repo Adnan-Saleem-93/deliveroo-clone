@@ -10,12 +10,27 @@ import {IS_ANDROID} from '../../../utils/constants'
 const DELIVERY_FEE = 2.99
 
 const CartPage = () => {
-  const {items, restaurant, setShowCartCard, totalPrice, totalCount, removeItemFromCart} =
-    useCartStore()
+  const {
+    items,
+    restaurant,
+    setShowCartCard,
+    totalPrice,
+    totalCount,
+    removeItemFromCart,
+    clearCart
+  } = useCartStore()
   const navigation = useNavigation()
 
   const closeCartModalPage = () =>
     navigation.canGoBack ? navigation.goBack() : navigation.navigate('Home')
+
+  const handlePlaceOrder = () => {
+    navigation.navigate('PreparingOrder')
+    setShowCartCard(false)
+    setTimeout(() => {
+      clearCart()
+    }, 4000)
+  }
 
   useEffect(() => {
     setShowCartCard(false)
@@ -112,10 +127,12 @@ const CartPage = () => {
 
           <View className="flex flex-row w-full justify-between items-center">
             <Text className="text-2xl font-medium tracking-wider">Order Total</Text>
-            <Text className="text-2xl font-bold tracking-wider">£{totalPrice + DELIVERY_FEE}</Text>
+            <Text className="text-2xl font-bold tracking-wider">
+              £{Number(totalPrice + DELIVERY_FEE).toFixed(2)}
+            </Text>
           </View>
 
-          <PrimaryButton text="Place Order" onPress={() => navigation.navigate('PreparingOrder')} />
+          <PrimaryButton text="Place Order" onPress={handlePlaceOrder} />
         </View>
       </View>
     </>
