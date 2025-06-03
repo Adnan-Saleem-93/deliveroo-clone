@@ -7,6 +7,8 @@ import FeaturedCategorySection from '../../organisms/FeaturedCategorySection'
 import {getFeaturedCategories} from '../../../utils/api'
 import HomeTemplate from '../../templates/HomeTemplate'
 import LoadingFeaturedRestaurantCategories from './loading'
+import CartCard from '../../organisms/CartCard'
+import EmptySpace from '../../molecules/EmptySpace'
 
 const HomePage = () => {
   const navigation = useNavigation()
@@ -37,24 +39,28 @@ const HomePage = () => {
     })
   }, [])
   return (
-    <HomeTemplate>
-      <ScrollView
-        contentContainerStyle={{paddingBottom: Platform.OS === 'android' ? 50 : 100}}
-        className="p-4"
-      >
-        <View className="flex-col gap-y-5">
-          <Categories />
+    <>
+      <CartCard />
+      <HomeTemplate>
+        <ScrollView
+          contentContainerStyle={{paddingBottom: Platform.OS === 'android' ? 50 : 100}}
+          className="p-4"
+        >
+          <View className="flex-col gap-y-5">
+            <Categories />
 
-          {isFetchingCategories ? (
-            <LoadingFeaturedRestaurantCategories />
-          ) : featuredRestaurantCategories.length > 0 ? (
-            featuredRestaurantCategories.map((category, idx) => {
-              return <FeaturedCategorySection key={category?._id || idx} {...category} />
-            })
-          ) : null}
-        </View>
-      </ScrollView>
-    </HomeTemplate>
+            {isFetchingCategories ? (
+              <LoadingFeaturedRestaurantCategories />
+            ) : featuredRestaurantCategories.length > 0 ? (
+              featuredRestaurantCategories.map((category, idx) => {
+                return <FeaturedCategorySection key={category?._id || idx} {...category} />
+              })
+            ) : null}
+          </View>
+        </ScrollView>
+        <EmptySpace />
+      </HomeTemplate>
+    </>
   )
 }
 

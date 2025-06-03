@@ -9,12 +9,11 @@ import {useNavigation} from '@react-navigation/native'
 import {useUserLocationStore} from '../../store/location'
 
 const DeliveryPage = () => {
-  const {restaurant, setShowCartCard} = useCartStore()
+  const {restaurant} = useCartStore()
   const {navigate} = useNavigation()
   const {latitude, longitude} = useUserLocationStore()
 
   const handleCloseDeliveryPage = () => {
-    setShowCartCard(true)
     navigate('Home')
   }
 
@@ -29,7 +28,7 @@ const DeliveryPage = () => {
             <Text className="text-slate-100 text-2xl font-semibold">Order Help</Text>
           </TouchableOpacity>
         </View>
-        <View className="mx-6 bg-white shadow-md rounded-md p-6 gap-y-2">
+        <View className="mx-6 z-[100] -mb-8 bg-white shadow-md rounded-md p-6 gap-y-2">
           <View className="flex-row justify-between">
             <View className="gap-y-2">
               <Text className="text-slate-400/70 text-xl font-semibold">Estimated Arrival</Text>

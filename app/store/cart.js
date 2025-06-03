@@ -5,7 +5,6 @@ export const useCartStore = create((set) => ({
   restaurant: null,
   totalPrice: 0,
   totalCount: 0,
-  showCartCard: true,
   wasCartCleared: false,
   addItemToCart: (restaurant, newItem) =>
     set((state) => {
@@ -64,10 +63,6 @@ export const useCartStore = create((set) => ({
       return {items: [], restaurant: null, totalPrice: 0, wasCartCleared: true, totalCount: 0}
     }),
 
-  setShowCartCard: (flag) =>
-    set((state) => {
-      return {...state, showCartCard: flag}
-    }),
   resetWasCartClearedStatus: () =>
     set((state) => {
       return {...state, wasCartCleared: false}

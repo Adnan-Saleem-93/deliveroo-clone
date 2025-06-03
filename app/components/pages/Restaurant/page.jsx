@@ -19,7 +19,7 @@ import HaveFoodAllergy from '../../molecules/HaveFoodAllergy'
 import DishItem from '../../molecules/Cards/DishItem'
 import {generateUUID} from '../../../utils/helpers'
 import EmptySpace from '../../molecules/EmptySpace'
-import ModalComponent from '../../organisms/Modal'
+import CartCard from '../../organisms/CartCard'
 
 const RestaurantPage = ({route}) => {
   const {_id} = route.params
@@ -68,6 +68,7 @@ const RestaurantPage = ({route}) => {
   return (
     <>
       <BackButton classes="absolute top-16 left-4 z-50" />
+      <CartCard />
       {isFetchingData ? (
         <ScrollView
           contentContainerStyle={{paddingBottom: Platform.OS === 'android' ? 20 : 40}}
@@ -95,7 +96,6 @@ const RestaurantPage = ({route}) => {
           getItem={getItem}
           ListHeaderComponent={
             <View>
-              {/* <BackButton classes="absolute top-16 left-4 z-50" /> */}
               <View className="w-full">
                 <Image
                   progressiveRenderingEnabled
