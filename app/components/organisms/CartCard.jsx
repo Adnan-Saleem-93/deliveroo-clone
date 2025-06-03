@@ -5,17 +5,15 @@ import {useNavigation} from '@react-navigation/native'
 import {useModalStore} from '../../store/modal'
 
 const CartCard = () => {
-  const {items, totalPrice, showCartCard, totalCount} = useCartStore()
+  const {items, totalPrice, totalCount} = useCartStore()
   const {showModal} = useModalStore()
   const navigation = useNavigation()
 
-  console.log({showCartCard, showModal})
   return (
-    showCartCard &&
     items?.length > 0 &&
     !showModal && (
       <TouchableOpacity
-        className="absolute bottom-12 w-full px-4"
+        className="absolute z-[100] bottom-12 w-full px-4"
         onPress={() => navigation.navigate('Cart')}
       >
         <View className="flex flex-row items-center justify-between w-full mx-auto p-4 shadow-md bg-[#499A98] rounded-lg">

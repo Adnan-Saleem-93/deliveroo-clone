@@ -1,4 +1,4 @@
-import {View, Text, TouchableOpacity, Image, ScrollView, StyleSheet, StatusBar} from 'react-native'
+import {View, Text, TouchableOpacity, Image, ScrollView, StatusBar} from 'react-native'
 import React, {useEffect} from 'react'
 import {useCartStore} from '../../../store/cart'
 import RoundButton from '../../atoms/RoundButton'
@@ -13,11 +13,10 @@ const CartPage = () => {
   const {
     items,
     restaurant,
-    setShowCartCard,
     totalPrice,
     totalCount,
-    removeItemFromCart,
-    clearCart
+    removeItemFromCart
+    // clearCart
   } = useCartStore()
   const navigation = useNavigation()
 
@@ -26,19 +25,11 @@ const CartPage = () => {
 
   const handlePlaceOrder = () => {
     navigation.navigate('PreparingOrder')
-    setShowCartCard(false)
-    setTimeout(() => {
-      clearCart()
-    }, 4000)
+
+    // setTimeout(() => {
+    //   clearCart()
+    // }, 4000)
   }
-
-  useEffect(() => {
-    setShowCartCard(false)
-
-    return () => {
-      setShowCartCard(true)
-    }
-  }, [])
 
   useEffect(() => {
     if (!totalCount) closeCartModalPage()
