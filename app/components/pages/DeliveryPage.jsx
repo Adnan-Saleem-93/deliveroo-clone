@@ -1,7 +1,7 @@
 import {View, Text, StyleSheet, SafeAreaView, TouchableOpacity, Image} from 'react-native'
 import * as Progress from 'react-native-progress'
 
-import {XMarkIcon} from 'react-native-heroicons/outline'
+import {PhoneIcon, XMarkIcon} from 'react-native-heroicons/outline'
 import {useCartStore} from '../../store/cart'
 
 import MapView, {Marker} from 'react-native-maps'
@@ -19,7 +19,7 @@ const DeliveryPage = () => {
 
   return (
     <View className="flex-1 bg-gray-400/80">
-      <SafeAreaView className="">
+      <SafeAreaView className="flex-1">
         <View className="p-6 flex-row items-center justify-between">
           <TouchableOpacity onPress={handleCloseDeliveryPage}>
             <XMarkIcon strokeWidth={3} color="#fff" size={32} />
@@ -33,18 +33,17 @@ const DeliveryPage = () => {
             <View className="gap-y-2">
               <Text className="text-slate-400/70 text-xl font-semibold">Estimated Arrival</Text>
               <Text className="text-4xl font-bold">45-55 Minutes</Text>
+              <Progress.Bar
+                color="#fff"
+                indeterminate={true}
+                unfilledColor="#9ca3af"
+                borderColor="#9ca3af"
+                style={{marginTop: 8, marginBottom: 8, width: '100%'}}
+              />
             </View>
             <Image source={{uri: 'https://links.papareact.com/fls'}} className="h-24 w-24" />
           </View>
 
-          <Progress.Bar
-            width={180}
-            color="#fff"
-            indeterminate={true}
-            unfilledColor="#9ca3af"
-            borderColor="#9ca3af"
-            style={{marginTop: 8}}
-          />
           <Text className="text-gray-400 text-xl font-semibold">
             Your order {restaurant?.name ? `at ${restaurant?.name}'s` : ''} is being prepared
           </Text>
@@ -70,6 +69,16 @@ const DeliveryPage = () => {
             pinColor="green"
           />
         </MapView>
+        <View className="bg-white flex-row w-full justify-between items-center py-8 px-4 pb-12 -mb-10">
+          <View>
+            <Text className="text-2xl text-gray-400">Your Rider</Text>
+            <Text className="text-2xl font-semibold tracking-[7px]">Joshua</Text>
+          </View>
+          <TouchableOpacity className="flex-row items-center gap-x-2">
+            <PhoneIcon />
+            <Text className="text-3xl text-gray-400/80 font-medium">Call</Text>
+          </TouchableOpacity>
+        </View>
       </SafeAreaView>
     </View>
   )
@@ -78,7 +87,8 @@ const DeliveryPage = () => {
 const styles = StyleSheet.create({
   map: {
     width: '100%',
-    height: '100%'
+    // height: '100%',
+    flex: 1
   }
 })
 
