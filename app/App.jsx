@@ -10,6 +10,7 @@ import ModalComponent from './components/organisms/Modal'
 import DarkenedBackground from './components/organisms/DarkenedBackground'
 import PreparingOrderPage from './components/pages/PreparingOrderPage'
 import DeliveryPage from './components/pages/DeliveryPage'
+import WelcomePage from './components/pages/WelcomePage'
 
 const Stack = createStackNavigator()
 
@@ -17,6 +18,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen name="Welcome" component={WelcomePage} options={{headerShown: false}} />
         <Stack.Screen name="Home" component={HomePage} />
         <Stack.Screen name="Restaurant" component={RestaurantPage} />
         <Stack.Screen name="Profile" component={ProfilePage} />
